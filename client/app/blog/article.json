@@ -1,0 +1,9 @@
+ {
+    "id":"1",
+    "category": "Books & Magazines",
+    "title": "Title here",
+    "html_desc": "<p>Article content here</p>",
+    "images": [
+        "img/featured-img-1.jpg"
+    ]
+}

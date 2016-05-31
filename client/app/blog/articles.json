@@ -1,0 +1,15 @@
+[
+    {
+        "id":"1",
+        "category": "books",
+        "title": "Article title here",
+        "short_desc": "Short desc here, maybe a bit longer",
+        "images": [
+            "img/article-img1.jpg"
+        ] ,
+        "featured_stat":true,
+        "featured_img": [
+            "img/featured-img-1.jpg"
+        ]
+    }
+]

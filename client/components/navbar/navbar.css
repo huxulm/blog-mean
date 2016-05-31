@@ -1,0 +1,15 @@
+/*toolbar background color*/
+.tabs.md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar), .tabs.md-toolbar  {
+    background-color: green;
+}
+
+.tab-item > .md-button:hover {
+    background-color: transparent;
+}
+
+.tab-item > .md-button.md-ink-ripple {
+    border-radius: 0px;
+}
+/*.tab-item > .md-button, .tab-item > .md-button > .md-ripple-container {
+    border-radius: 50%;
+}*/
