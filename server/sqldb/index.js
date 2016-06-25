@@ -1,4 +1,10 @@
 /**
+ns.host='localhost']	String	The host of the relational database.
+[options.port=]	Integer	The port of the relational database.
+[options.protocol='tcp']	String	The protocol of the relational database.
+
+
+[options.define={}
  * Sequelize initialization module
  */
 
@@ -10,7 +16,7 @@ import Sequelize from 'sequelize';
 
 var db = {
   Sequelize,
-  sequelize: new Sequelize(config.sequelize.uri, config.sequelize.options)
+  sequelize: new Sequelize(config.sequelize.database, config.sequelize.username, config.sequelize.password, config.sequelize.options)
 };
 
 // Insert models below

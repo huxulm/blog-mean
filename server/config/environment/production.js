@@ -22,15 +22,24 @@ module.exports = {
           'mongodb://localhost/snoopy'
   },
 
+  // Sequelize connection opions
   sequelize: {
-    uri:  process.env.SEQUELIZE_URI ||
-          'sqlite://',
+    database: 'snoopy',
+    username: 'root',
+    password: 'xlm1',	
+    //uri: 'mysql://localhost:3306/snoopy-dev',
     options: {
+      dialect: 'mysql',
+      host: process.env.HOST || 'localhost',
+      port: process.env.MYSQL_PORT || 3306,
+      dialectModulePath: null,
       logging: false,
-      storage: 'dist.sqlite',
+
+      // only for sqlite	
+      //storage: 'dev.sqlite',
       define: {
         timestamps: false
       }
     }
-  }
+  },
 };

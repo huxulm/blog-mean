@@ -6,6 +6,7 @@
 'use strict';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import sqldb from '../sqldb';
 
 Thing.find({}).remove()
   .then(() => {
@@ -37,7 +38,10 @@ Thing.find({}).remove()
       info: 'Easily deploy your app to Heroku or Openshift with the heroku ' +
              'and openshift subgenerators'
     });
+
+    console.log("OK completed!");
   });
+
 
 User.find({}).remove()
   .then(() => {
@@ -56,4 +60,14 @@ User.find({}).remove()
     .then(() => {
       console.log('finished populating users');
     });
+  });
+
+
+sqldb.sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Mysql connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
   });

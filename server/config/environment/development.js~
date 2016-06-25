@@ -11,7 +11,7 @@ module.exports = {
 
   // Sequelize connection opions
   sequelize: {
-    database: 'snoopy_dev',
+    database: 'snoopy-dev',
     username: 'root',
     password: 'xlm1',	
     //uri: 'mysql://localhost:3306/snoopy-dev',
