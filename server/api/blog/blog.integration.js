@@ -7,36 +7,36 @@ var newBlog;
 
 describe('Blog API:', function() {
 
-  describe('GET /api/Blogs', function() {
-    var Blogs;
+  describe('GET /api/blogs', function() {
+    var blogs;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/Blogs')
+        .get('/api/blogs')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          Blogs = res.body;
+          blogs = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      Blogs.should.be.instanceOf(Array);
+      blogs.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/Blogs', function() {
+  describe('POST /api/blogs', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/Blogs')
+        .post('/api/blogs')
         .send({
-          name: 'New Blog',
-          info: 'This is the brand new Blog!!!'
+          title: 'New Blog',
+          info: 'This is the brand new blog!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -49,50 +49,50 @@ describe('Blog API:', function() {
         });
     });
 
-    it('should respond with the newly created Blog', function() {
+    it('should respond with the newly created blog', function() {
       newBlog.name.should.equal('New Blog');
-      newBlog.info.should.equal('This is the brand new Blog!!!');
+      newBlog.info.should.equal('This is the brand new blog!!!');
     });
 
   });
 
-  describe('GET /api/Blogs/:id', function() {
-    var Blog;
+  describe('GET /api/blogs/:id', function() {
+    var blog;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/Blogs/' + newBlog._id)
+        .get('/api/blogs/' + newBlog._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          Blog = res.body;
+          blog = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      Blog = {};
+      blog = {};
     });
 
-    it('should respond with the requested Blog', function() {
-      Blog.name.should.equal('New Blog');
-      Blog.info.should.equal('This is the brand new Blog!!!');
+    it('should respond with the requested blog', function() {
+      blog.title.should.equal('New Blog');
+      blog.info.should.equal('This is the brand new blog!!!');
     });
 
   });
 
-  describe('PUT /api/Blogs/:id', function() {
+  describe('PUT /api/blogs/:id', function() {
     var updatedBlog;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/Blogs/' + newBlog._id)
+        .put('/api/blogs/' + newBlog._id)
         .send({
           name: 'Updated Blog',
-          info: 'This is the updated Blog!!!'
+          info: 'This is the updated blog!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -109,18 +109,18 @@ describe('Blog API:', function() {
       updatedBlog = {};
     });
 
-    it('should respond with the updated Blog', function() {
+    it('should respond with the updated blog', function() {
       updatedBlog.name.should.equal('Updated Blog');
-      updatedBlog.info.should.equal('This is the updated Blog!!!');
+      updatedBlog.info.should.equal('This is the updated blog!!!');
     });
 
   });
 
-  describe('DELETE /api/Blogs/:id', function() {
+  describe('DELETE /api/blogs/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/Blogs/' + newBlog._id)
+        .delete('/api/blogs/' + newBlog._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Blog API:', function() {
         });
     });
 
-    it('should respond with 404 when Blog does not exist', function(done) {
+    it('should respond with 404 when blog does not exist', function(done) {
       request(app)
-        .delete('/api/Blogs/' + newBlog._id)
+        .delete('/api/blogs/' + newBlog._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

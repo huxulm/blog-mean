@@ -6,6 +6,8 @@
 'use strict';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import Category from '../api/category/category.model';
+import Blog from '../api/blog/blog.model';
 import sqldb from '../sqldb';
 
 Thing.find({}).remove()
@@ -70,4 +72,68 @@ sqldb.sequelize
   })
   .catch(function (err) {
     console.log('Unable to connect to the database:', err);
+  });
+
+
+Blog.find({}).remove()
+  .then(() => {
+    Blog.create({
+      title: 'New Blog Title 1',
+      author: [
+        {
+          name: 'Jackdon',
+        }, {
+          name: 'Fackdon',
+        }
+      ],
+    }, {
+      title: 'New Blog Title 2',
+      author: [
+        {
+          name: 'Jackdon',
+        }, {
+          name: 'Lisy',
+        }
+      ],
+    }, {
+      title: 'New Blog Title 3',
+      author: [
+        {
+          name: 'Smily',
+        }, {
+          name: 'Fackdon',
+        }
+      ],
+    })
+    .then(() => {
+      console.log('finished populating blogs');
+    });
+  });
+
+
+Category.find({}).remove()
+  .then(() => {
+    Category.create({
+      name: 'JavaScript',
+      create_user: 'Jackdon',
+      active: true,
+    }, {
+      name: 'Java',
+      create_time: '2016-06-26 15:10:31',
+      create_user: 'Jackdon',
+      active: true,
+    }, {
+      name: 'HTML',
+      create_time: '2016-06-26 15:10:31',
+      create_user: 'Jackdon',
+      active: true,
+    }, {
+      name: 'CSS',
+      create_time: '2016-06-26 15:10:31',
+      create_user: 'Jackdon',
+      active: true,
+    })
+    .then(() => {
+      console.log('finsished populating blogs');
+    });
   });

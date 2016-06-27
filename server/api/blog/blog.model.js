@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 var BlogSchema = new mongoose.Schema({
-  id: ObjectId,
+  // _id: mongoose.Schema.Types.ObjectId,
   title: String,
   info: String,
   images:[
@@ -14,18 +14,15 @@ var BlogSchema = new mongoose.Schema({
   markdown: String,
   html: String,
   author: [
-    {
-      id: ObjectId,
-      name:String,
-    }
+    {name: {type: String, default: 'unknown'}}
   ],
   category: String,
 
-  create_time: Date,
-  modify_time: Date,
+  create_time: {type: Date, default: Date.now},
+  modify_time: {type: Date},
   create_user: String,
   modify_user: String,
   active: Boolean,
 });
 
-export default mongoose.model('blog', BlogSchema);
+export default mongoose.model('Blog', BlogSchema);

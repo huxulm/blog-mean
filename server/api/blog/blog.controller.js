@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/Blogs              ->  index
- * POST    /api/Blogs              ->  create
- * GET     /api/Blogs/:id          ->  show
- * PUT     /api/Blogs/:id          ->  update
- * DELETE  /api/Blogs/:id          ->  destroy
+ * GET     /api/blogs              ->  index
+ * POST    /api/blogs              ->  create
+ * GET     /api/blogs/:id          ->  show
+ * PUT     /api/blogs/:id          ->  update
+ * DELETE  /api/blogs/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import Blog from './Blog.model';
+import Blog from './blog.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;

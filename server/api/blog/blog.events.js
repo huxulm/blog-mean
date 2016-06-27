@@ -1,15 +1,15 @@
 /**
- * blog model events
+ * Blog model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-import blog from './blog.model';
-var blogEvents = new EventEmitter();
+import Blog from './blog.model';
+var BlogEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-blogEvents.setMaxListeners(0);
+BlogEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,14 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  blog.schema.post(e, emitEvent(event));
+  Blog.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    blogEvents.emit(event + ':' + doc._id, doc);
-    blogEvents.emit(event, doc);
+    BlogEvents.emit(event + ':' + doc._id, doc);
+    BlogEvents.emit(event, doc);
   }
 }
 
-export default blogEvents;
+export default BlogEvents;
