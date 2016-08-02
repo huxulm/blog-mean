@@ -1,8 +1,8 @@
 'use strict';
 
 (function () {
-    function BlogService() {
-        return {
+    function BlogService($resource) {
+        /*return {
             getBlogList: function () {
                 return [
                     {
@@ -25,7 +25,17 @@
                     }
                 ];
             }
-        }
+        }*/
+        return $resource('/api/blogs/:id/:controller', 
+            {id: '@_id'},
+            {
+                query: {
+                    method: 'GET',
+                    isArray: true
+                }
+            }
+        );
+        
     }
     
     angular.module('snoopyApp.blog').factory('Blog', BlogService);

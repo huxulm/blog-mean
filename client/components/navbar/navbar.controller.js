@@ -8,6 +8,20 @@ class NavbarController {
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
+    this.menu = [
+      {
+        state: 'main',
+        title: 'Home'
+      },
+      {
+        state: 'main.blog',
+        title: 'Blog'
+      },
+      {
+        state: 'main',
+        title: 'About'
+      }
+    ];
   }
 
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('snoopyApp', ['snoopyApp.auth', 'snoopyApp.admin', 'snoopyApp.constants',
+angular.module('snoopyApp', ['snoopyApp.auth', 'snoopyApp.admin', 'snoopyApp.blog', 'snoopyApp.constants',
     'ngCookies', 'ngResource', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'validation.match',
     'ngMaterial'
   ])

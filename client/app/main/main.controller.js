@@ -13,6 +13,10 @@
       this.$http.get('/api/things')
         .then(response => {
           this.awesomeThings = response.data;
+          console.log('log things:');
+          for(var thing in this.awesomeThings) {
+            console.log(thing.name);
+          }
         });
     }
 

@@ -1,0 +1,18 @@
+#blog {
+    text-align: center;
+    background: lightgoldenrodyellow;
+}
+
+#blog-list {
+    margin-left: 20%;
+    left: 50%;
+    transform: translateX(10%);
+}
+
+#blog-list > li {
+    list-style: none;
+}
+
+#blog-list > li > span {
+    background: #ffff00;
+}

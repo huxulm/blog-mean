@@ -1,5 +1,5 @@
 /*toolbar background color*/
-.tabs.md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar), .tabs.md-toolbar  {
+.tabs.md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar), .tabs.md-toolbar {
     background-color: green;
 }
 

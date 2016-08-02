@@ -1,0 +1,14 @@
+<div id="blog">BLOG</div>
+<div class="container">
+    <ul id="blog-list">
+        <li ng-repeat="item in blog.lastBlogs">
+            <span class="glyphicon glyphicon-star">title:</span>
+            <span ng-bind="item.title">{{item.title}}</span>
+            <span>create time:</span>
+            <span ng-bind="item.create_time">{{item.create_time}}</span>
+            <span>content:</span>
+            <span ng-bind="item.content">{{item.content}}</span>
+        </li>
+    </ul>
+
+</div>
