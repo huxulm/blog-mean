@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Blog from './blog.model';
+import APP_CONSTS from '../../config/app_constants';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -19,6 +20,23 @@ function respondWithResult(res, statusCode) {
       res.status(statusCode).json(entity);
     }
   };
+}
+
+function shortBlogContent() {
+  return function (entity) {
+    if(entity) {
+      for (var index = 0; index < entity.length; index++) {
+        // console.log('Blog index ' + index + ': ' + entity[index]);
+        // entity[index].content = entity[index].content.subString(0, 10);
+        if(entity[index].content) {
+          console.log( "shorted blog string: " + entity[index].content.substring(0, 50));
+          entity[index].content = entity[index].content.substring(0, 200);
+          console.log('Type of time :' + (typeof entity[index].create_time));
+        }
+      }
+    }
+    return entity;
+  }
 }
 
 function saveUpdates(updates) {
@@ -62,6 +80,7 @@ function handleError(res, statusCode) {
 // Gets a list of Blogs
 export function index(req, res) {
   return Blog.find().exec()
+    .then(shortBlogContent())
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

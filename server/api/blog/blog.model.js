@@ -4,25 +4,28 @@ import mongoose from 'mongoose';
 
 var BlogSchema = new mongoose.Schema({
   // _id: mongoose.Schema.Types.ObjectId,
-  title: String,
+  title: {type: String, default: 'No Title'},
   info: String,
   images:[
     {
       url: String,
     }
   ],
+  content: String,
   markdown: String,
   html: String,
   author: [
-    {name: {type: String, default: 'unknown'}}
+    { id: mongoose.Schema.Types.ObjectId, 
+      name: {type: String, default: 'unknown'},
+    }
   ],
   category: String,
 
   create_time: {type: Date, default: Date.now},
   modify_time: {type: Date},
-  create_user: String,
+  create_user: {type: String, default: 'SNOOPY'},
   modify_user: String,
-  active: Boolean,
+  active: {type: Boolean, default: true},
 });
 
 export default mongoose.model('Blog', BlogSchema);

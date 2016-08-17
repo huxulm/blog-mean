@@ -13,9 +13,18 @@ import http from 'http';
 
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
-mongoose.connection.on('error', function(err) {
-  console.error('MongoDB connection error: ' + err);
-  process.exit(-1);
+mongoose.connection
+.on('connecting', function(){
+    console.log("trying to establish a connection to mongo");
+})
+.on('connected', function() {
+    console.log("mongodb connection established successfully");
+})
+.on('error', function(err) {
+    console.log('connection to mongo failed ' + err);
+})
+.on('disconnected', function() {
+    console.log('mongo db connection closed');
 });
 
 // Populate databases with sample data
