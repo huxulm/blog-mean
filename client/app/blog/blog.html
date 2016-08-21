@@ -1,23 +1,30 @@
-<div id="blog">BLOG</div>
 <div>
     <ul id="blog-list">
         <li ng-repeat="item in blog.lastBlogs">
-            <span class="glyphicon glyphicon-star">title:</span>
-            <span ng-bind="item.title">{{item.title}}</span>
-            <span>create time:</span>
-            <span ng-bind="item.create_time">{{item.create_time}}</span>
-            <span>content:</span>
-            <span ng-bind="item.content">{{item.content}}</span>
-            <hr/>
-            <div class="read"><a href="#">Read More</a></div>
-            <div id="blog-hide-info">
-                <div id="info-show" style="">
-                    <img id="blog-icon"></img>
+            <!--PEN CODE-->
+            <div class="blog-card {{$index%2!=0? 'alt' : ''}}">
+                <div class="photo {{$index%2!=0? 'photo1' : 'photo2'}}"></div>
+                <ul class="details">
+                    <li class="author"><a href="#">{{item.title}}</a></li>
+                    <li class="date">{{item.create_time}}</li>
+                    <li class="tags">
+                        <ul>
+                            <li><a href="#">Learn</a></li>
+                            <li><a href="#">Code</a></li>
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                        </ul>
+                    </li>
+                    <li class="other">other + {{$index}}</li>
+                </ul>
+                <div class="description">
+                    <h1>{{item.title}}</h1>
+                    <h2>Opening a door to the future</h2>
+                    <p class="summary">{{item.content}}</p>
+                    <a href="#">Read More</a>
                 </div>
-                <div id="info-hide">
-                    HIDE
-                </div>    
             </div>
+            <!--END PEN CODE-->            
         </li>
     </ul>
 </div>
