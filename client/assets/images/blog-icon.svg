@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Comfortaa:300,400,700);</style>
+  </defs>
+  <path d="M 77.412 98.707 Z" style="stroke: black; fill: none;"/>
+  <path d="M 76.599 98.707 Z" style="stroke: black; fill: none;"/>
+  <path d="M 52.226 73.521 Z" style="stroke: black; fill: none;"/>
+  <path d="M 31.103 39.399 Z" style="stroke: black; fill: none;"/>
+  <rect x="0.23" y="-0.411" width="499.651" height="499.651" style="fill: rgb(82, 132, 206);"/>
+  <text x="71.725" y="106.019" transform="matrix(2.084306, 0, 0, 2.640629, -98.88855, 38.757591)" style="font-size: 72px; font-family: Comfortaa; text-transform: capitalize; font-weight: 700; fill: rgb(255, 255, 255);">BLOG</text>
+</svg>

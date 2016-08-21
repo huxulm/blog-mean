@@ -1,5 +1,5 @@
 <div id="blog">BLOG</div>
-<div class="container">
+<div>
     <ul id="blog-list">
         <li ng-repeat="item in blog.lastBlogs">
             <span class="glyphicon glyphicon-star">title:</span>
@@ -9,8 +9,15 @@
             <span>content:</span>
             <span ng-bind="item.content">{{item.content}}</span>
             <hr/>
-            <h2 class="read"><a href="#">Read More</a></h2>
+            <div class="read"><a href="#">Read More</a></div>
+            <div id="blog-hide-info">
+                <div id="info-show" style="">
+                    <img id="blog-icon"></img>
+                </div>
+                <div id="info-hide">
+                    HIDE
+                </div>    
+            </div>
         </li>
     </ul>
-
 </div>
