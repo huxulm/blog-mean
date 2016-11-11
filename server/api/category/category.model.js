@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 var CategorySchema = new mongoose.Schema({
-  // id: mongoose.Schema.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   name: String,
   create_time: Date,
   modify_time: Date,

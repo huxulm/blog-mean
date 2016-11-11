@@ -6,7 +6,7 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/snoopy-dev'
+    uri: 'mongodb://127.0.0.1/snoopy-dev'
   },
 
   // Sequelize connection opions

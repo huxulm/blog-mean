@@ -1,6 +1,6 @@
 #blog {
     text-align: center;
-    background: lightgoldenrodyellow;
+    background: seagreen;
 }
 
 #blog-list {
@@ -10,7 +10,7 @@
     max-width: 800px;
     transition: height 0.3s ease;
     -webkit-transition: height 0.3s ease;
-    background: #fff;
+    background: rgba(100, 0, 255, 0.8);
     border-radius: 3px;
     box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
     /*transform: translateX(10%);*/

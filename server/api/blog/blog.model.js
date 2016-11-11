@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 var BlogSchema = new mongoose.Schema({
-  // _id: mongoose.Schema.Types.ObjectId,
+  id: mongoose.Schema.Types.ObjectId,
   title: {type: String, default: 'No Title'},
   info: String,
   images:[

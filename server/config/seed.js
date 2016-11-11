@@ -126,24 +126,27 @@ Blog.find({}).remove()
     });
   });
 
-
 Category.find({}).remove()
   .then(() => {
     Category.create({
+      _id: ObjectId("534009e4d852427820000002"),
       name: 'JavaScript',
       create_user: 'Jackdon',
       active: true,
     }, {
+      _id: ObjectId("534009e4d852427820000003"),
       name: 'Java',
       create_time: '2016-06-26 15:10:31',
       create_user: 'Jackdon',
       active: true,
     }, {
+      _id: ObjectId("534009e4d852427820000004"),
       name: 'HTML',
       create_time: '2016-06-26 15:10:31',
       create_user: 'Jackdon',
       active: true,
     }, {
+      _id: ObjectId("534009e4d852427820000005"),
       name: 'CSS',
       create_time: '2016-06-26 15:10:31',
       create_user: 'Jackdon',
