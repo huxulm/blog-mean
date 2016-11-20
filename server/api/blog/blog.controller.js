@@ -30,7 +30,7 @@ function shortBlogContent() {
         // entity[index].content = entity[index].content.subString(0, 10);
         if(entity[index].content) {
           console.log( "shorted blog string: " + entity[index].content.substring(0, 50));
-          entity[index].content = entity[index].content.substring(0, 200);
+          entity[index].content = entity[index].content.substring(0, APP_CONSTS.BLOG_LIST_CONTENT_LENGTH_LIMIT);
           console.log('Type of time :' + (typeof entity[index].create_time));
         }
       }

@@ -3,29 +3,40 @@
 import mongoose from 'mongoose';
 
 var BlogSchema = new mongoose.Schema({
-  id: mongoose.Schema.Types.ObjectId,
+  // _id: mongoose.Schema.Types.ObjectId,
   title: {type: String, default: 'No Title'},
-  info: String,
-  images:[
-    {
-      url: String,
-    }
-  ],
+  html_content: String,
+  md_content: String,
+  text_content: String,
   content: String,
   markdown: String,
   html: String,
-  author: [
-    { id: mongoose.Schema.Types.ObjectId, 
-      name: {type: String, default: 'unknown'},
+  author: String,
+  author_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
+  tags: [
+    {
+      tag_id: {
+        type: mongoose.Schema.Types.ObjectId
+      }
     }
   ],
-  category: String,
-
+  praise_count: Number,
+  pictures: [
+    {
+      image_id: {
+        type: mongoose.Schema.Types.ObjectId,
+      },
+      url: {
+        type: String,
+      }
+    }
+  ],
+  write_date: Date,
+  last_edit_date: Date,
   create_time: {type: Date, default: Date.now},
-  modify_time: {type: Date},
-  create_user: {type: String, default: 'SNOOPY'},
-  modify_user: String,
-  active: {type: Boolean, default: true},
+  modify_time: {type: Date, default: Date.now},
+  is_delete: {type: String, default: 'Y'}
 });
 
 export default mongoose.model('Blog', BlogSchema);

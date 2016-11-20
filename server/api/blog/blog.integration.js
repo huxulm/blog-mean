@@ -36,7 +36,7 @@ describe('Blog API:', function() {
         .post('/api/blogs')
         .send({
           title: 'New Blog',
-          info: 'This is the brand new blog!!!'
+          text_content: 'This is the brand new blog!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -50,8 +50,8 @@ describe('Blog API:', function() {
     });
 
     it('should respond with the newly created blog', function() {
-      newBlog.name.should.equal('New Blog');
-      newBlog.info.should.equal('This is the brand new blog!!!');
+      newBlog.title.should.equal('New Blog');
+      newBlog.text_content.should.equal('This is the brand new blog!!!');
     });
 
   });
@@ -79,7 +79,7 @@ describe('Blog API:', function() {
 
     it('should respond with the requested blog', function() {
       blog.title.should.equal('New Blog');
-      blog.info.should.equal('This is the brand new blog!!!');
+      blog.text_content.should.equal('This is the brand new blog!!!');
     });
 
   });
@@ -91,8 +91,8 @@ describe('Blog API:', function() {
       request(app)
         .put('/api/blogs/' + newBlog._id)
         .send({
-          name: 'Updated Blog',
-          info: 'This is the updated blog!!!'
+          title: 'Updated Blog',
+          text_content: 'This is the updated blog!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -110,8 +110,8 @@ describe('Blog API:', function() {
     });
 
     it('should respond with the updated blog', function() {
-      updatedBlog.name.should.equal('Updated Blog');
-      updatedBlog.info.should.equal('This is the updated blog!!!');
+      updatedBlog.title.should.equal('Updated Blog');
+      updatedBlog.text_content.should.equal('This is the updated blog!!!');
     });
 
   });
