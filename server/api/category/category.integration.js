@@ -7,36 +7,37 @@ var newCategory;
 
 describe('Category API:', function() {
 
-  describe('GET /api/categorys', function() {
-    var categorys;
+  describe('GET /api/categories', function() {
+    var categories;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/categorys')
+        .get('/api/categories')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          categorys = res.body;
+          categories = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      categorys.should.be.instanceOf(Array);
+      categories.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/categorys', function() {
+  describe('POST /api/categories', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/categorys')
+        .post('/api/categories')
         .send({
           name: 'New Category',
-          info: 'This is the brand new category!!!'
+          describe: 'This is the brand new category!!!',
+          level: '0'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -51,17 +52,17 @@ describe('Category API:', function() {
 
     it('should respond with the newly created category', function() {
       newCategory.name.should.equal('New Category');
-      newCategory.info.should.equal('This is the brand new category!!!');
+      newCategory.describe.should.equal('This is the brand new category!!!');
     });
 
   });
 
-  describe('GET /api/categorys/:id', function() {
+  describe('GET /api/categories/:id', function() {
     var category;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/categorys/' + newCategory._id)
+        .get('/api/categories/' + newCategory._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -79,20 +80,20 @@ describe('Category API:', function() {
 
     it('should respond with the requested category', function() {
       category.name.should.equal('New Category');
-      category.info.should.equal('This is the brand new category!!!');
+      category.describe.should.equal('This is the brand new category!!!');
     });
 
   });
 
-  describe('PUT /api/categorys/:id', function() {
+  describe('PUT /api/categories/:id', function() {
     var updatedCategory;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/categorys/' + newCategory._id)
+        .put('/api/categories/' + newCategory._id)
         .send({
           name: 'Updated Category',
-          info: 'This is the updated category!!!'
+          describe: 'This is the updated category!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -111,16 +112,16 @@ describe('Category API:', function() {
 
     it('should respond with the updated category', function() {
       updatedCategory.name.should.equal('Updated Category');
-      updatedCategory.info.should.equal('This is the updated category!!!');
+      updatedCategory.describe.should.equal('This is the updated category!!!');
     });
 
   });
 
-  describe('DELETE /api/categorys/:id', function() {
+  describe('DELETE /api/categories/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/categorys/' + newCategory._id)
+        .delete('/api/categories/' + newCategory._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -132,7 +133,7 @@ describe('Category API:', function() {
 
     it('should respond with 404 when category does not exist', function(done) {
       request(app)
-        .delete('/api/categorys/' + newCategory._id)
+        .delete('/api/categories/' + newCategory._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

@@ -3,13 +3,12 @@
 import mongoose from 'mongoose';
 
 var CategorySchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   name: String,
-  create_time: Date,
+  level: String,
+  describe: String,
+  create_time: {type: Date, default: Date.now},
   modify_time: Date,
-  create_user: String,
-  modify_user: String,
-  active: Boolean
+  is_delete: {type: String, default: 'Y'}
 });
 
 export default mongoose.model('Category', CategorySchema);
