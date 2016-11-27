@@ -40,7 +40,10 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  create_time: {type: Date, default: Date.now},
+  modify_time: {type: Date},
+  is_delete: {type: String, default: 'Y'}
 });
 
 /**
