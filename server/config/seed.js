@@ -92,14 +92,14 @@ Blog.find({}).remove()
       author: 'Jackdon',
       author_id: ObjectId('5827effcb725baa40f281966'),
       create_time: new Date(),
-      category: mongoose.Schema.Types.ObjectId('5827effcb725baa40f28195f'),
+      category: new mongoose.Types.ObjectId('5827effcb725baa40f28195f'),
       html_content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin tincidunt mauris vitae venenatis. Aliquam vel pharetra felis. Donec blandit nec nibh sit amet tempor. Donec efficitur orci ut elit ultrices interdum. Nulla tristique a nisi non placerat. Pellentesque auctor purus eget eleifend mattis. Maecenas tincidunt sem ut neque lacinia, vitae venenatis metus consectetur. Quisque accumsan felis in urna viverra, vitae fringilla sapien malesuada. Sed vitae neque ut mi scelerisque euismod. Nullam felis purus, venenatis id aliquam sit amet, laoreet a leo.',
     }, {
       title: 'New Blog Title 4',
       author: 'Jackdon',
       author_id: ObjectId('5827effcb725baa40f281963'),
       create_time: new Date(),
-      category: ObjectId('5827effcb725baa40f281964'),
+      category: new mongoose.Types.ObjectId('5827effcb725baa40f281964'),
       html_content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin tincidunt mauris vitae venenatis. Aliquam vel pharetra felis. Donec blandit nec nibh sit amet tempor. Donec efficitur orci ut elit ultrices interdum. Nulla tristique a nisi non placerat. Pellentesque auctor purus eget eleifend mattis. Maecenas tincidunt sem ut neque lacinia, vitae venenatis metus consectetur. Quisque accumsan felis in urna viverra, vitae fringilla sapien malesuada. Sed vitae neque ut mi scelerisque euismod. Nullam felis purus, venenatis id aliquam sit amet, laoreet a leo. Aenean mauris metus, varius eget sapien sed, ultrices hendrerit ipsum. In eget massa eu risus tincidunt varius a quis nunc. Sed in consequat magna. Aenean blandit felis vitae tempus eleifend. Etiam faucibus turpis sed ex venenatis tempor.',
     })
     .then(() => {
