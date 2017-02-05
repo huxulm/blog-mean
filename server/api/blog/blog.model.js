@@ -1,6 +1,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate';
 
 var BlogSchema = new mongoose.Schema({
   // _id: mongoose.Schema.Types.ObjectId,
@@ -39,4 +40,5 @@ var BlogSchema = new mongoose.Schema({
   is_delete: {type: String, default: 'Y'}
 });
 
+BlogSchema.plugin(mongoosePaginate);
 export default mongoose.model('Blog', BlogSchema);
