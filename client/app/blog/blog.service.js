@@ -29,10 +29,17 @@
         return $resource('/api/blogs/:id/:controller', 
             {id: '@_id'},
             {
-                query: {
+              getBlogList: {
                     method: 'GET',
                     isArray: true
+                },
+              getPage: {
+                method: 'GET',
+                isArray: false,
+                params: {
+                  id: 'page'
                 }
+              }
             }
         );
         

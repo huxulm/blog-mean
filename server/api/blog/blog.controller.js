@@ -17,8 +17,9 @@ function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
     if (entity) {
-      res.status(statusCode).json(entity);
+      return res.status(statusCode).json(entity);
     }
+    return null;
   };
 }
 
@@ -84,6 +85,14 @@ export function index(req, res) {
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
+
+export function page(req, res) {
+  console.log('==============================> page request....');
+  return Blog.paginate({}, { page: 1, limit: 10 })
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 
 // Gets a single Blog from the DB
 export function show(req, res) {

@@ -4,6 +4,7 @@ var proxyquire = require('proxyquire').noPreserveCache();
 
 var blogCtrlStub = {
   index: 'blogCtrl.index',
+  page: 'blogCtrl.page',
   show: 'blogCtrl.show',
   create: 'blogCtrl.create',
   update: 'blogCtrl.update',
@@ -49,6 +50,16 @@ describe('blog API Router:', function() {
     it('should route to blog.controller.show', function() {
       routerStub.get
         .withArgs('/:id', 'blogCtrl.show')
+        .should.have.been.calledOnce;
+    });
+
+  });
+
+  describe('GET /api/blogs/page', function() {
+
+    it('should route to blog.controller.page', function() {
+      routerStub.get
+        .withArgs('/page', 'blogCtrl.page')
         .should.have.been.calledOnce;
     });
 

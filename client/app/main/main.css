@@ -27,5 +27,6 @@
 }
 
 main {
-  background: #4393B9;
+  background: yellow;
+  background: url("../../assets/images/blog-icon.svg") fixed;
 }

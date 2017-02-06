@@ -18,7 +18,7 @@ class NavbarController {
         title: 'Blog'
       },
       {
-        state: 'main',
+        state: 'main.about',
         title: 'About'
       }
     ];

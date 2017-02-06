@@ -13,7 +13,7 @@ module.exports = {
   sequelize: {
     database: 'snoopy_dev',
     username: 'root',
-    password: 'xlm1',	
+    password: 'xlm1',
     //uri: 'mysql://localhost:3306/snoopy-dev',
     options: {
       dialect: 'mysql',
@@ -22,7 +22,7 @@ module.exports = {
       dialectModulePath: null,
       logging: false,
 
-      // only for sqlite	
+      // only for sqlite
       //storage: 'dev.sqlite',
       define: {
         timestamps: false
@@ -31,6 +31,6 @@ module.exports = {
   },
 
   // Seed database on startup
-  seedDB: true
+  seedDB: false
 
 };

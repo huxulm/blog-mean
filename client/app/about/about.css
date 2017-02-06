@@ -1,0 +1,142 @@
+#about {
+
+}
+
+#about > a {
+  margin: 5px;
+  color: ghostwhite;
+}
+
+.wp-about {
+  min-height: 100%;
+  height: 100%;
+}
+
+.about-info {
+  margin-top: 20px;
+}
+
+.about-info > ul {
+
+}
+
+.about-info > ul > li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.about-info > ul:first-child {
+  margin-top: 20px;
+}
+.about-info > ul:last-child {
+  margin-bottom: 20px;
+}
+
+.about-info > ul > li {
+  list-style: none;
+}
+
+.about-info > ul > li > img {
+  width: 80px;
+  height: 80px;
+  background-clip: border-box;
+  border-radius: 50%;
+  border-color: rgba(128, 128, 128, 0.2);
+  border-width: 5px;
+}
+
+.about-info > ul > li > img:hover {
+  border-color: rgba(128, 128, 128, 0.6);
+}
+
+.about-info-view {
+}
+.about-info-view > ul {
+  align-content: center;
+}
+.about-info-view > ul > li {
+  display: inline-block;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.about-info-view > ul:first-child {
+}
+.about-info-view > ul > li:before, .about-info-view > ul > li:after {
+}
+.about-info-view > ul:last-child {
+}
+
+
+
+.photo-ct {
+  margin: 50px auto;
+  width: 800px;
+  height: 480px;
+
+  overflow: hidden;
+  border: 10px solid;
+  border-top-color: #856036;
+  border-left-color: #5d4426;
+  border-bottom-color: #856036;
+  border-right-color: #5d4426;
+  position: relative;
+}
+
+@media
+  /*screen and (device-aspect-ratio: 16/9), screen and (device-aspect-ratio: 16/10), */
+handheld, screen and (max-device-width: 480px), handheld,screen and (max-width: 480px){
+  .photo-ct {
+    border: 5px solid;
+    border-top-color: #856036;
+    border-left-color: #5d4426;
+    border-bottom-color: #856036;
+    border-right-color: #5d4426;
+    width: 320px;
+    height: 240px;
+  }
+
+  .about-info-view > ul{
+    display: block;
+  }
+
+  .about-info-view > ul > li {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.photo {
+  background-origin: content-box;
+  -webkit-box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  background: yellow;
+
+  position: absolute;
+  animation: round 16s infinite;
+  opacity: 0;
+}
+
+@keyframes round {
+  25% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+}
+img:nth-child(1) {
+  animation-delay: 12s;
+}
+
+img:nth-child(2) {
+  animation-delay: 8s;
+}
+
+img:nth-child(3) {
+  animation-delay: 4s;
+}
+
+img:nth-child(4) {
+  animation-delay: 0s;
+}

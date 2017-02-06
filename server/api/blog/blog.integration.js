@@ -2,6 +2,7 @@
 
 var app = require('../..');
 import request from 'supertest';
+import _ from 'lodash';
 
 var newBlog;
 
