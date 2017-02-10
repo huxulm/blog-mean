@@ -150,7 +150,7 @@
   background-size: cover;
 }
 .blog-card .details {
-  transition: all 0.3s ease;
+  /*transition: all 0.3s ease;*/
   -webkit-transition: all 0.3s ease;
   background: rgba(0, 0, 0, 0.6);
   box-sizing: border-box;
