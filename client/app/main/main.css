@@ -27,6 +27,6 @@
 }
 
 main {
-  background: yellow;
-  background: url("../../assets/images/blog-icon.svg") fixed;
+  background: rgb(179, 199, 255);
+  /*background: url("../../assets/images/blog-icon.svg") fixed;*/
 }

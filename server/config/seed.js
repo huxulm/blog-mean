@@ -87,28 +87,23 @@ User.find({}).remove()
 
 Blog.find({}).remove()
   .then(() => {
-        Blog.create({
-              title: 'New Blog Title A',
-              author: 'Jackdon',
-              // author_id: ObjectId('5827effcb725baa40f28195e'),
-              create_time: new Date(),
-              // category: ObjectId('5827effcb725baa40f281962'),
-              html_content: '上个世纪有一把排位赛，日本队从1931年开局就把中国队压得抬不起头来。37年日本队开始全线猛攻，中国队一度被打得三路全破，水晶不保。38年的时候，中国队这边有人说日本人优势太大，这边技术不如人装备不如人配合还不行，干脆投了吧。队长拒绝投降后这人骂',
-            }, {
-              title: 'New Blog Title B',
-              author: 'Jackdon',
-              author_id: ObjectId('5827effcb725baa40f281966'),
-              create_time: new Date(),
-              category: new mongoose.Types.ObjectId('5827effcb725baa40f28195f'),
-              html_content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin tincidunt mauris vitae venenatis. Aliquam vel pharetra felis. Donec blandit nec nibh sit amet tempor. Donec efficitur orci ut elit ultrices interdum. Nulla tristique a nisi non placerat. Pellentesque auctor purus eget eleifend mattis. Maecenas tincidunt sem ut neque lacinia, vitae venenatis metus consectetur. Quisque accumsan felis in urna viverra, vitae fringilla sapien malesuada. Sed vitae neque ut mi scelerisque euismod. Nullam felis purus, venenatis id aliquam sit amet, laoreet a leo.',
-            }, {
-              title: 'New Blog Title C',
-              author: 'Jackdon',
-              author_id: ObjectId('5827effcb725baa40f281963'),
-              create_time: new Date(),
-              category: new mongoose.Types.ObjectId('5827effcb725baa40f281964'),
-              html_content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin tincidunt mauris vitae venenatis. Aliquam vel pharetra felis. Donec blandit nec nibh sit amet tempor. Donec efficitur orci ut elit ultrices interdum. Nulla tristique a nisi non placerat. Pellentesque auctor purus eget eleifend mattis. Maecenas tincidunt sem ut neque lacinia, vitae venenatis metus consectetur. Quisque accumsan felis in urna viverra, vitae fringilla sapien malesuada. Sed vitae neque ut mi scelerisque euismod. Nullam felis purus, venenatis id aliquam sit amet, laoreet a leo. Aenean mauris metus, varius eget sapien sed, ultrices hendrerit ipsum. In eget massa eu risus tincidunt varius a quis nunc. Sed in consequat magna. Aenean blandit felis vitae tempus eleifend. Etiam faucibus turpis sed ex venenatis tempor.',
-            })
+
+    var blogs = [];
+    var cotent = ['上个世纪有一把排位赛，日本队从1931年开局就把中国队压得抬不起头来。37年日本队开始全线猛攻，中国队一度被打得三路全破，水晶不保。38年的时候，中国队这边有人说日本人优势太大，这边技术不如人装备不如人配合还不行，干脆投了吧。队长拒绝投降后这人骂',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin tincidunt mauris vitae venenatis. Aliquam vel pharetra felis. Donec blandit nec nibh sit amet tempor. Donec efficitur orci ut elit ultrices interdum. Nulla tristique a nisi non placerat. Pellentesque auctor purus eget eleifend mattis. Maecenas tincidunt sem ut neque lacinia, vitae venenatis metus consectetur. Quisque accumsan felis in urna viverra, vitae fringilla sapien malesuada. Sed vitae neque ut mi scelerisque euismod. Nullam felis purus, venenatis id aliquam sit amet, laoreet a leo.',
+      'Proin sollicitudin tincidunt mauris vitae venenatis. Aliquam vel pharetra felis. Donec blandit nec nibh sit amet tempor. Donec efficitur orci ut elit ultrices interdum. Nulla tristique a nisi non placerat. Pellentesque auctor purus eget eleifend mattis. Maecenas tincidunt sem ut neque lacinia, vitae',
+    ];
+    for (var i = 1; i < 51; i++) {
+      blogs.push({
+        title: 'New Blog Title -' + i,
+        author: 'Jackdon',
+        // author_id: ObjectId('5827effcb725baa40f28195e'),
+        create_time: new Date(),
+        // category: ObjectId('5827effcb725baa40f281962'),
+        html_content: cotent[i%2],
+      });
+    }
+        Blog.create(blogs)
     .then(() => {
         console.log('finished populating blogs');
         Blog.count({}, (err, count) => {

@@ -86,9 +86,24 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
+/**
+ * build pagination query condition
+ * @param req
+ */
+function buildPageQuery(req) {
+  var query = {};
+  var firstPageIdx = "1";
+  var defaultLimit = 10;
+  query.page = _.isEmpty(req.query.page) ?  firstPageIdx : req.query.page;
+  query.limit = _.isEmpty(req.query.limit) ? defaultLimit : Number(req.query.limit);
+  console.log("query condition:" + JSON.stringify(query));
+  return query;
+}
+
 export function page(req, res) {
-  console.log('==============================> page request....');
-  return Blog.paginate({}, { page: 1, limit: 10 })
+  console.log('request params:' + JSON.stringify(req.query));
+  var queryCondition = buildPageQuery(req);
+  return Blog.paginate({}, queryCondition)
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

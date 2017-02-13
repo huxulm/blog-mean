@@ -1,6 +1,6 @@
 <div>
   <ul id="blog-list">
-    <li ng-repeat="item in blog.lastBlogs">
+    <li ng-repeat="item in blog.pageResult.docs">
       <!--PEN CODE-->
       <div class="blog-card {{$index%2!=0? 'alt' : ''}}">
         <div class="photo {{$index%2!=0? 'photo1' : 'photo2'}}"></div>
@@ -18,8 +18,8 @@
           <li class="other">other + {{$index}}</li>
         </ul>
         <div class="description">
-          <h1>{{item.title}}</h1>
-          <h2>Opening a door to the future</h2>
+          <h2>{{item.title}}</h2>
+          <h3>Opening a door to the future</h3>
           <p class="summary">{{item.html_content}}</p>
           <a href="#">Read More</a>
         </div>
@@ -28,18 +28,14 @@
     </li>
   </ul>
 
-  <nav aria-label="Page navigation">
-    <ul class="pagination" id="blog-list-pg">
+  <nav aria-label="Page navigation" class="blog-page-nav">
+    <ul class="pagination blog-list-pg" >
       <li>
         <a href="#" aria-label="Previous" ng-click="blog.prePage()">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
+      <li ng-repeat="a in blog.getIndexArr()" ng-click="blog.index(a)"><a href="#">{{a}}</a></li>
       <li>
         <a href="#" aria-label="Next" ng-click="blog.nextPage()">
           <span aria-hidden="true">&raquo;</span>
@@ -47,4 +43,14 @@
       </li>
     </ul>
   </nav>
+
+  <div id="blog-pg-st">
+    <ul>
+      <li><span href="#">页面大小:</span></li>
+      <li><a href="#" ng-click="blog.setPageSize(5)">[5]</a></li>
+      <li><a href="#" ng-click="blog.setPageSize(10)">[10]</a></li>
+      <li><a href="#" ng-click="blog.setPageSize(20)">[15]</a></li>
+    </ul>
+  </div>
+
 </div>
