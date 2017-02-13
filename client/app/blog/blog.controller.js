@@ -4,12 +4,13 @@
 
   class BlogController {
 
-    constructor(Blog) {
+    constructor(Blog, Util) {
       // Use the User $resource to fetch all users
       this.Blog = Blog;
+      this.Util = Util;
       this.currentPage = 1;
       this.pages = 1;
-      this.pageSize = 8;
+      this.pageSize = 3;
       this.total = 0;
     }
 
@@ -41,7 +42,7 @@
       }
     }
 
-    refreshPage(rfSuccessCall) {
+    refreshPage(callback) {
       this.currentPage = this.currentPage || 1;
       this.pages = this.pages || 0;
       this.pageSize = this.pageSize || 15;
@@ -52,7 +53,7 @@
       // get data
       this.Blog.getPage({page: this.currentPage, limit: this.pageSize})
         .$promise.then(function (result) {
-        rfSuccessCall(result);
+        callback(result);
       });
     }
 
@@ -75,6 +76,7 @@
 
     setPageSize(value) {
       this.pageSize = value;
+      this.refreshPage(this.rfSuccessCall(this));
     }
 
     getIndexArr() {
