@@ -30,6 +30,8 @@ module.exports = function(config) {
       'client/bower_components/marked/lib/marked.js',
       'client/bower_components/angular-marked/dist/angular-marked.js',
       'client/bower_components/bootstrap-markdown/js/bootstrap-markdown.js',
+      'client/bower_components/sweetalert/dist/sweetalert.min.js',
+      'client/bower_components/ngSweetAlert/SweetAlert.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',
