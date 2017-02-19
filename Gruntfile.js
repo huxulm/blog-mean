@@ -605,7 +605,7 @@ module.exports = function(grunt) {
         },
         files: {
           '<%= yeoman.client %>/index.html': [
-            '<%= yeoman.client %>/{app,components}/**/*.css',
+            '<%= yeoman.client %>/{app,components,bower_components}/**/*.css',
             '<%= yeoman.client %>/bower_components/font-awesome/css/font-awesome.min.css'
           ]
         }

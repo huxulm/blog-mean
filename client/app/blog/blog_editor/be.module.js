@@ -1,7 +1,7 @@
 /**
  * Created by xulingming on 2017/2/19.
  */
-angular.module('snoopyApp.home.blogEditor', ['hc.marked', 'hljs', 'angular-markdown-editor'])
+angular.module('snoopyApp.home.blogEditor', ['hc.marked', 'hljs', 'angular-markdown-editor', 'oitozero.ngSweetAlert'])
   .config(['markedProvider', 'hljsServiceProvider', function(markedProvider, hljsServiceProvider) {
   // marked config
   markedProvider.setOptions({

@@ -5,11 +5,12 @@
 
   class BlogEditorController {
 
-    constructor($window, $rootScope, $scope, marked) {
+    constructor($window, $rootScope, $scope, marked, SweetAlert) {
       this.$window = $window;
       this.$scope = $scope;
       this.marked = marked;
       this.$rootScope = $rootScope;
+      this.SweetAlert = SweetAlert;
     }
 
     $onInit() {
@@ -53,7 +54,8 @@
     showMsg(m) {
       console.log('submit...');
       if (this.$window) {
-        this.$window.alert(m);
+        // this.$window.alert(m);
+        this.SweetAlert.swal("Good job!", "You clicked the button!", "success");
       }
     }
 

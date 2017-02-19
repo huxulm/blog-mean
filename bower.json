@@ -23,7 +23,8 @@
     "bootstrap-markdown": "^2.10.0",
     "jquery": "^2.2.4",
     "marked": "^0.3.5",
-    "ngSweetAlert": "angular-sweetalert#^1.1.2"
+    "ngSweetAlert": "angular-sweetalert#^1.1.2",
+    "code-prettify": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0"
