@@ -16,6 +16,7 @@
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
       <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+      <link rel="stylesheet" href="bower_components/bootstrap-markdown/css/bootstrap-markdown.min.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -26,11 +27,16 @@
       <link rel="stylesheet" href="app/admin/admin.css">
       <link rel="stylesheet" href="app/app.css">
       <link rel="stylesheet" href="app/blog/blog.css">
+      <link rel="stylesheet" href="app/blog/blog_editor/angular-markdown-editor.css">
+      <link rel="stylesheet" href="app/blog/blog_editor/be.css">
+      <link rel="stylesheet" href="app/blog/blog_editor/prettify.css">
+      <link rel="stylesheet" href="app/main/home/home.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="components/footer/footer.css">
       <link rel="stylesheet" href="components/modal/modal.css">
       <link rel="stylesheet" href="components/navbar/navbar.css">
       <link rel="stylesheet" href="components/oauth-buttons/oauth-buttons.css">
+      <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
@@ -75,6 +81,10 @@
       <script src="bower_components/angular-messages/angular-messages.js"></script>
       <script src="bower_components/angular-material/angular-material.js"></script>
       <script src="bower_components/Font-Awesome-SVG-PNG/Font-Awesome-SVG-PNG.js"></script>
+      <script src="bower_components/angular-highlightjs/build/angular-highlightjs.js"></script>
+      <script src="bower_components/marked/lib/marked.js"></script>
+      <script src="bower_components/angular-marked/dist/angular-marked.js"></script>
+      <script src="bower_components/bootstrap-markdown/js/bootstrap-markdown.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
@@ -82,12 +92,12 @@
       <!-- injector:js -->
       <script src="app/admin/admin.module.js"></script>
       <script src="app/blog/blog.module.js"></script>
+      <script src="app/blog/blog_editor/be.module.js"></script>
       <script src="app/about/about.module.js"></script>
+      <script src="app/main/home/home.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/main/main.controller.js"></script>
-      <script src="app/account/settings/settings.controller.js"></script>
-      <script src="app/account/signup/signup.controller.js"></script>
+      <script src="app/blog/blog_editor/prettify.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/about/about.controller.js"></script>
       <script src="app/admin/admin.router.js"></script>
@@ -96,10 +106,16 @@
       <script src="app/about/about.router.js"></script>
       <script src="app/blog/blog.router.js"></script>
       <script src="app/blog/blog.service.js"></script>
+      <script src="app/blog/blog_editor/angular-markdown-editor.js"></script>
+      <script src="app/blog/blog_editor/be.controller.js"></script>
       <script src="app/about/about.service.js"></script>
+      <script src="app/blog/blog_editor/be.router.js"></script>
+      <script src="app/account/account.js"></script>
+      <script src="app/account/login/login.controller.js"></script>
+      <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/test/test.js"></script>
-      <script src="app/account/account.js"></script>
+      <script src="app/account/settings/settings.controller.js"></script>
       <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
@@ -111,8 +127,9 @@
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
-      <script src="app/account/login/login.controller.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
       <script src="components/util/util.service.js"></script>
+      <script src="bower_components/highlight.js.origin/src/highlight.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
   </body>

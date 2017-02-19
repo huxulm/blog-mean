@@ -10,7 +10,7 @@ class NavbarController {
     this.getCurrentUser = Auth.getCurrentUser;
     this.menu = [
       {
-        state: 'main',
+        state: 'main.home',
         title: 'Home'
       },
       {

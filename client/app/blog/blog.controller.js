@@ -4,7 +4,7 @@
 
   class BlogController {
 
-    constructor(Blog, Util) {
+    constructor(Blog, Util, $window) {
       // Use the User $resource to fetch all users
       this.Blog = Blog;
       this.Util = Util;
@@ -12,6 +12,7 @@
       this.pages = 1;
       this.pageSize = 3;
       this.total = 0;
+      this.$window = $window;
     }
 
     $onInit() {
@@ -90,7 +91,6 @@
       }
       return arr;
     }
-
 
   }
 

@@ -28,5 +28,7 @@
 
 main {
   background: rgb(179, 199, 255);
-  /*background: url("../../assets/images/blog-icon.svg") fixed;*/
+  background-size: cover;
+  -webkit-background-size: cover;
+  filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
 }

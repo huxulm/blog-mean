@@ -57,7 +57,7 @@ module.exports = function(grunt) {
     },
     watch: {
       babel: {
-        files: ['<%= yeoman.client %>/{app,components}/**/!(*.spec|*.mock).js'],
+        files: ['<%= yeoman.client %>/{app,components,bower_components}/**/!(*.spec|*.mock).js'],
         tasks: ['newer:babel:client']
       },
       ngconstant: {
@@ -66,13 +66,16 @@ module.exports = function(grunt) {
       },
       injectJS: {
         files: [
-          '<%= yeoman.client %>/{app,components}/**/!(*.spec|*.mock).js',
+          '<%= yeoman.client %>/{app,components,bower_components}/**/!(*.spec|*.mock).js',
+          '<%= yeoman.client %>/bower_components/highlight.js.origin/src/highlight.js',
           '!<%= yeoman.client %>/app/app.js'
         ],
         tasks: ['injector:scripts']
       },
       injectCss: {
-        files: ['<%= yeoman.client %>/{app,components}/**/*.css'],
+        files: ['<%= yeoman.client %>/{app,components,bower_components}/**/*.css',
+          '<%= yeoman.client %>/bower_components/font-awesome/css/font-awesome.css'
+        ],
         tasks: ['injector:css']
       },
       mochaTest: {
@@ -581,7 +584,8 @@ module.exports = function(grunt) {
           '<%= yeoman.client %>/index.html': [
                [
                  '<%= yeoman.client %>/{app,components}/**/!(*.spec|*.mock).js',
-                 '!{.tmp,<%= yeoman.client %>}/app/app.{js,ts}'
+                 '!{.tmp,<%= yeoman.client %>}/app/app.{js,ts}',
+                 '<%= yeoman.client %>/bower_components/highlight.js.origin/src/highlight.js'
                ]
             ]
         }
@@ -601,7 +605,8 @@ module.exports = function(grunt) {
         },
         files: {
           '<%= yeoman.client %>/index.html': [
-            '<%= yeoman.client %>/{app,components}/**/*.css'
+            '<%= yeoman.client %>/{app,components}/**/*.css',
+            '<%= yeoman.client %>/bower_components/font-awesome/css/font-awesome.min.css'
           ]
         }
       }

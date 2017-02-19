@@ -1,0 +1,51 @@
+<div class="container be">
+  <h1>Angular Markdown Editor</h1>
+  <a href="https://github.com/ghiscoding/angular-markdown-editor">Ghiscoding Github Project</a> |
+  <a href="http://plnkr.co/edit/jADq7H?p=preview">Plunker Live Demo</a>
+
+  <hr/>
+
+  <!--
+  <marked>
+    ## Markdown directive
+    *It works!*
+    #### Markdown [cheatsheet](//github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+  </marked>
+
+  <hr/>
+
+  -->
+
+  <div>
+    External Markdown Editor API Calls with `$rootScope.markdownEditorObjects`
+    <br/>
+    <button class="btn btn-info" ng-click="editor.fullScreenPreview()">Full Screen Preview</button>
+  </div>
+  <hr/>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-8">
+      <div class="form-group">
+        <label for="comment">Live Markdown with <a href="http://www.codingdrama.com/bootstrap-markdown/">Bootstrap-Markdown Editor</a>:</label>
+								<textarea 	name="blog editor" class="content-box"
+                           ng-model="blogEditor"
+                           markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}"
+                           on-fullscreen="editor.onFullScreenCallback()"
+                           on-fullscreen-exit="editor.onFullScreenExitCallback()"
+                           rows="10" >
+    					</textarea>
+              <div class="btn btn-group" style="float: right; margin-right: 25px; margin-top: 25px; color: #00A000">
+                <button class="btn btn-primary" ng-click="editor.showMsg(blogEditor)">SUBMIT</button>
+              </div>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!--
+  <div class="outline" style="padding:20px; margin-bottom: 20px" marked src="'readme.md'">
+
+  </div>
+  -->
+</div>

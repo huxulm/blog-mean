@@ -1,12 +1,7 @@
 #about {
   width: 60%;
   margin-left: 20%;
-  background: rgba(0, 66, 255, 0.6);
-}
-
-#about > a {
-  margin: 5px;
-  color: ghostwhite;
+  background: rgba(179, 199, 255, 0.6);
 }
 
 .wp-about {
@@ -54,42 +49,36 @@
   border-color: rgba(128, 128, 128, 0.6);
 }
 
+#about-title {
+  margin-left: 20px;
+  font-size: 200%;
+  color: rgba(25, 113, 255, 0.6);
+}
+
+.about-info-view > div {
+  display: inline-block;
+}
+
+.line-divider {
+  height: 5px;
+  width: 50%;
+  margin: 5px 0 5px 25%;
+  background: rgba(151, 151, 151, 0.33);
+}
+
 .about-info-view {
   display: block;
   align-content: center;
   overflow: hidden;
-  margin-top: 20px;
-  width: 80%;
-  margin-left: 10%;
+  margin: 20px auto;
+  width: 320px;
+  height: 480px;
 }
-.about-info-view > ul {
-  align-content: center;
-  display: block;
-  width: 80%;
-  margin-left: 10%;
-  background: lightslategray;
-}
-.about-info-view > ul > li {
-  list-style: none;
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-width: 200px;
-  min-height: 300px;
-}
-.about-info-view > ul:first-child {
-}
-.about-info-view > ul > li:before, .about-info-view > ul > li:after {
-}
-.about-info-view > ul:last-child {
-}
-
-
 
 .album-photo-ct {
   /*margin: 50px auto;*/
   width: 100%;
-  height: 100%;
+  height: 45%;
   align-content: center;
   overflow: hidden;
   border: 10px solid;
@@ -100,8 +89,7 @@
   position: relative;
 }
 
-@media
-  /*screen and (device-aspect-ratio: 16/9), screen and (device-aspect-ratio: 16/10), */
+@media screen and (device-aspect-ratio: 16/9), screen and (device-aspect-ratio: 16/10),
 handheld, screen and (max-device-width: 480px), handheld,screen and (max-width: 480px){
   .album-photo-ct {
     border: 5px solid;
@@ -109,18 +97,10 @@ handheld, screen and (max-device-width: 480px), handheld,screen and (max-width: 
     border-left-color: #5d4426;
     border-bottom-color: #856036;
     border-right-color: #5d4426;
-    width: 320px;
-    height: 240px;
+    width: 100%;
+    height: 45%;
   }
 
-  .about-info-view > ul{
-    display: block;
-  }
-
-  .about-info-view > ul > li {
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
 .album-photo {
@@ -128,8 +108,9 @@ handheld, screen and (max-device-width: 480px), handheld,screen and (max-width: 
   -webkit-box-sizing: content-box;
   width: 100%;
   height: 100%;
-  background: yellow;
-
+  background: transparent;
+  background-size: cover;
+  margin: 0 auto;
   position: absolute;
   animation: round 16s infinite;
   opacity: 0;
@@ -139,7 +120,7 @@ handheld, screen and (max-device-width: 480px), handheld,screen and (max-width: 
   25% {
     opacity: 1;
   }
-  40% {
+  45% {
     opacity: 0;
   }
 }
