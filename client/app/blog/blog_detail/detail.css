@@ -1,0 +1,25 @@
+.blog-detail {
+  position: relative;
+  background: #fff;
+  padding:50px;
+  width: 810px;
+  min-height: 1200px;
+  margin: 20px auto 0 auto;
+  box-shadow: -4px -4px 4px rgba(100,100,100,.2);
+}
+
+.blog-detail-title {
+  font-size: 140%;
+}
+
+.blog-content {
+  font-size: 120%;
+  /*border: 1px solid rgba(221, 223, 255, 0.6);*/
+}
+
+
+/*highlight theme*/
+pre {
+  border-radius: 1px;
+  border-width: 0px;
+}

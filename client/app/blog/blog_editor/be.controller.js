@@ -5,12 +5,14 @@
 
   class BlogEditorController {
 
-    constructor($window, $rootScope, $scope, marked, SweetAlert) {
+    constructor($window, $rootScope, $scope, marked, SweetAlert, Blog, Auth) {
       this.$window = $window;
       this.$scope = $scope;
       this.marked = marked;
       this.$rootScope = $rootScope;
       this.SweetAlert = SweetAlert;
+      this.BlogService = Blog;
+      this.Auth = Auth;
     }
 
     $onInit() {
@@ -55,8 +57,50 @@
       console.log('submit...');
       if (this.$window) {
         // this.$window.alert(m);
-        this.SweetAlert.swal("Good job!", "You clicked the button!", "success");
+        this.SweetAlert.swal("marked content:" + (m || ''), "You clicked the button!", "success");
       }
+    }
+
+    // submit
+    saveBlog() {
+      var SweetAlert = this.SweetAlert;
+      if (this.$scope.blogEditor) {
+        SweetAlert.swal({
+            title: "Save your blog?",
+            text: "will submit to server",
+            type: "info",
+            showCancelButton: false,
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+          }, this.saveBlogCallback()
+        );
+      }
+    }
+
+    saveBlogCallback() {
+      var $this = this;
+      var successCb = function (result) {
+        if (result && result.code == -1000) {
+          $this.SweetAlert.swal({
+            title: "保存失败:" + (result.msg || '')
+          });
+        }
+      };
+      var failedCb = function (err) {
+        if (err) {
+          $this.SweetAlert.swal("failed:" + JSON.stringify(err));
+        } else {
+          $this.SweetAlert.swal("save success!");
+        }
+      };
+      var user = this.Auth.getCurrentUser();
+      return function (isConfirm) {
+        if (isConfirm) {
+            $this.BlogService.save({md_content: $this.$scope.blogEditor, html_content: $this.marked($this.$scope.blogEditor), author: user.name, author_id: user._id})
+              .$promise.then(successCb)
+              .then(failedCb);
+        }
+      };
     }
 
   }

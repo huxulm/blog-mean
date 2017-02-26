@@ -12,6 +12,7 @@
 import _ from 'lodash';
 import Blog from './blog.model';
 import APP_CONSTS from '../../config/app_constants';
+import ERR from '../../components/SNOOPY_ERROR';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -119,6 +120,10 @@ export function show(req, res) {
 
 // Creates a new Blog in the DB
 export function create(req, res) {
+  var body = req.body;
+  if (!validaeBlogPost(req, res)){
+     return;
+  }
   return Blog.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
@@ -142,4 +147,15 @@ export function destroy(req, res) {
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
+}
+
+function validaeBlogPost(req, res) {
+  console.log('blog content:' + (req.body ? JSON.stringify(req.body) : 'body is empty'));
+  console.log('content-type:' + req.get('Content-Type'));
+  if (!req.body || !req.body.md_content || !req.body.author || !req.body.html_content || !req.body.author_id) {
+    res.status(200)
+      .json(ERR._E_BLOG_POST_ILLEGAL_PARAMS);
+    return false;
+  }
+  return true;
 }

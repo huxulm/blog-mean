@@ -1,4 +1,4 @@
-/*.blog-home {
+#blog-home {
   background: url("../../../assets/images/japanese_cherry_trees_in_bloom-1366x768.jpg");
   background-size: cover;
   width: 100%;
@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-.blog-home > a {
+#blog-home > a {
   color: rgba(221, 223, 255, 0.4);
   display: inline-block;
   font-size: 400%;
@@ -17,6 +17,6 @@
   text-decoration: none;
   vertical-align: middle;
 }
-.blog-home > a:hover {
+#blog-home > a:hover {
   color: rgba(221, 223, 255, 0.8);
-}*/
+}

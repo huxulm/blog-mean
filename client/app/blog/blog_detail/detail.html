@@ -1,0 +1,22 @@
+<div class="blog-detail">
+
+  <h3 class="blog-detail-title">{{blogDetail.title}}</h3>
+
+  <ul class="list-group">
+    <li class="list-group-item glyphicon glyphicon-user">
+      <span class="fa">{{blogDetail.author}}</span>
+    </li>
+    <li class="list-group-item glyphicon glyphicon-time">
+      <span class="fa">{{blogDetail.create_time}}</span>
+    </li>
+    <li class="list-group-item" ng-show="blogDetail.tags.length > 0">
+      <ul class="glyphicon glyphicon-tags list-group">
+        <!--<span ng-if="blogDetail.tags.length == 0" class="glyphicon glyphicon-tags"></span>-->
+        <li ng-repeat="tag in blogDetail.tags" class="list-group-item"><a href="#"><span>{{tag}}</span></a></li>
+      </ul>
+  </ul>
+
+  <div class="blog-content font-kai" ng-bind-html="html_content">
+  </div>
+
+</div>

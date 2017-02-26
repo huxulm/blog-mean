@@ -2,7 +2,7 @@
 
 (function() {
 
-  function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
+  function authInterceptor($rootScope, $q, $cookies, $injector, Util, SweetAlert) {
     var state;
     return {
       // Add authorization token to headers
@@ -17,8 +17,14 @@
       // Intercept 401s and redirect you to login
       responseError(response) {
         if (response.status === 401) {
-          (state || (state = $injector.get('$state')))
-          .go('login');
+          SweetAlert.swal({
+            title: 'Haven\'t login in, now to login?',
+          }, function (isConfirm) {
+            if (isConfirm) {
+              (state || (state = $injector.get('$state')))
+                .go('login');
+            }
+          });
           // remove any stale tokens
           $cookies.remove('token');
         }

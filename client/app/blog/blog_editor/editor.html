@@ -3,42 +3,6 @@
   <a href="https://github.com/ghiscoding/angular-markdown-editor">Ghiscoding Github Project</a> |
   <a href="http://plnkr.co/edit/jADq7H?p=preview">Plunker Live Demo</a>
 
-  <hr/>
-
-  <!--
-  <marked>
-    ```java
-    public class Person {
-
-      // name
-      String NAME;
-
-      public static void msg(String msg) {
-
-        System.out.println("message: " + msg);
-
-      }
-    }
-    ```
-    ```javascript
-      function() {
-
-        // constant
-        var _const;
-
-        return function(callback) {
-
-          return callback();
-        }
-      }
-
-    ```
-  </marked>
-
-  <hr/>
-  -->
-
-
   <div>
     External Markdown Editor API Calls with `$rootScope.markdownEditorObjects`
     <br/>
@@ -58,7 +22,7 @@
                            rows="10" >
     					</textarea>
               <div class="btn btn-group" style="float: right; margin-right: 25px; margin-top: 25px; color: #00A000">
-                <button class="btn btn-primary" ng-click="editor.showMsg(blogEditor)">SUBMIT</button>
+                <button class="btn btn-primary" ng-click="editor.saveBlog()">SUBMIT</button>
               </div>
       </div>
     </div>

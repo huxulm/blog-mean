@@ -1,11 +1,11 @@
-<div>
+<div ui-view="">
   <ul id="blog-list">
     <li ng-repeat="item in blog.pageResult.docs">
       <!--PEN CODE-->
       <div class="blog-card {{$index%2!=0? 'alt' : ''}}">
         <div class="photo {{$index%2!=0? 'photo1' : 'photo2'}}"></div>
         <ul class="details">
-          <li class="author"><a href="#">{{item.title}}</a></li>
+          <li class="author"><a href="#">{{item.author}}</a></li>
           <li class="date">{{item.create_time}}</li>
           <li class="tags">
             <ul>
@@ -20,8 +20,8 @@
         <div class="description">
           <h2>{{item.title}}</h2>
           <h3>Opening a door to the future</h3>
-          <p class="summary">{{item.html_content}}</p>
-          <a href="#">Read More</a>
+          <p class="summary" ng-bind-html="item.html_content"></p>
+          <a href="#" ui-sref="main.blog.detail({blogId: item._id})">Read More</a>
         </div>
       </div>
       <!--END PEN CODE-->
