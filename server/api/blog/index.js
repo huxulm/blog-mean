@@ -8,6 +8,7 @@ var router = new Router();
 
 router.get('/', controller.index);
 router.get('/page', controller.page);
+router.get('/tags', controller.tags);
 router.get('/:id', controller.show);
 router.post('/', auth.isAuthenticated(), controller.create);
 router.put('/:id', auth.isAuthenticated(), controller.update);

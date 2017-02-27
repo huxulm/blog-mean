@@ -9,6 +9,8 @@ import User from '../api/user/user.model';
 import Category from '../api/category/category.model';
 import Blog from '../api/blog/blog.model';
 import Comment from '../api/comment/comment.model';
+import Tag from '../api/blog/tag/tag.model';
+
 // import sqldb from '../sqldb';
 import mongoose from 'mongoose';
 
@@ -147,4 +149,12 @@ Category.find({}).remove()
     .then(() => {
       console.log('finished populating categories');
     });
+  });
+
+Tag.find({}).remove()
+  .then(() => {
+    Tag.create({tag: 'JavaScript'}, {tag: 'Java'}, {tag: 'HTML'}, {tag: 'CSS'})
+      .then(() => {
+        console.log("finished populating tags");
+      });
   });

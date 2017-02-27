@@ -26,7 +26,7 @@
                 ];
             }
         }*/
-        return $resource('/api/blogs/:id/:controller', 
+        return $resource('/api/blogs/:id/:controller',
             {id: '@_id'},
             {
               getBlogList: {
@@ -39,11 +39,18 @@
                 params: {
                   id: 'page'
                 }
+              },
+              getTags: {
+                method: 'GET',
+                isArray: false,
+                params: {
+                  id: 'tags'
+                }
               }
             }
         );
-        
+
     }
-    
+
     angular.module('snoopyApp.blog').factory('Blog', BlogService);
 })();

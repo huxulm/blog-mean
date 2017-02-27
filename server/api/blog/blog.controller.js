@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Blog from './blog.model';
+import Tag from './tag/tag.model';
 import APP_CONSTS from '../../config/app_constants';
 import ERR from '../../components/SNOOPY_ERROR';
 
@@ -109,6 +110,11 @@ export function page(req, res) {
     .catch(handleError(res));
 }
 
+export function tags(req, res) {
+  return Tag.paginate({}, {sort: {tag: "asc"}})
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
 
 // Gets a single Blog from the DB
 export function show(req, res) {

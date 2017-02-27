@@ -19,6 +19,9 @@
         if (response.status === 401) {
           SweetAlert.swal({
             title: 'Haven\'t login in, now to login?',
+            showCancelButton: true,
+            cancelButtonText: "No",
+            confirmButtonText: "To Login"
           }, function (isConfirm) {
             if (isConfirm) {
               (state || (state = $injector.get('$state')))

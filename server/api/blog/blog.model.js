@@ -18,7 +18,8 @@ var BlogSchema = new mongoose.Schema({
   tags: [
     {
       tag_id: {
-        type: mongoose.Schema.Types.ObjectId
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tag'
       }
     }
   ],

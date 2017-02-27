@@ -18,6 +18,38 @@
     $onInit() {
       this.$scope.blogEditor = "*This* **is** [markdown](https://xlm.life/)\n and `{{ 1 + 2 }}` = {{ 1 + 2 }}";
       this.$scope.markdownService = marked('#TEST');
+
+      this.$scope.blog = {title: "New Blog Title"};
+      this.$scope.default = {};
+      this.$scope.default.readonly = false;
+      this.$scope.default.tags = ['Java', 'Javascript', 'Node.js', 'Linux', 'Express', 'AngularJs'];
+      this.$scope.default.removable = true;
+
+      this.avaliableTags =[];
+      this.BlogService.getTags().$promise
+        .then(this.tagCb());
+      this.resetUI();
+    }
+
+    tagCb() {
+      var $this = this;
+      return function (d) {
+        $this.showMsg(JSON.stringify(d));
+        $this.avaliableTags = d.docs;
+        $this.refreshTags();
+      };
+    }
+
+    refreshTags() {
+      var $this = this;
+      if ($this.avaliableTags.length > 0) {
+        $this.$scope.default.tags = [];
+        $this.avaliableTags.forEach(function (e) {
+          if (e.tag) {
+            $this.$scope.default.tags.push(e.tag);
+          }
+        });
+      }
     }
 
     convertMarkdown() {
@@ -53,21 +85,20 @@
       e.hidePreview();
     }
 
-    showMsg(m) {
+    /*showMsg(m) {
       console.log('submit...');
       if (this.$window) {
         // this.$window.alert(m);
         this.SweetAlert.swal("marked content:" + (m || ''), "You clicked the button!", "success");
       }
-    }
+    }*/
 
     // submit
     saveBlog() {
       var SweetAlert = this.SweetAlert;
       if (this.$scope.blogEditor) {
-        SweetAlert.swal({
+        this.showMsg("will submit to server", {
             title: "Save your blog?",
-            text: "will submit to server",
             type: "info",
             showCancelButton: false,
             closeOnConfirm: false,
@@ -81,26 +112,90 @@
       var $this = this;
       var successCb = function (result) {
         if (result && result.code == -1000) {
-          $this.SweetAlert.swal({
+          $this.showMsg(null, {
             title: "保存失败:" + (result.msg || '')
-          });
+          }, () =>{});
         }
       };
       var failedCb = function (err) {
         if (err) {
-          $this.SweetAlert.swal("failed:" + JSON.stringify(err));
+          $this.showMsg("failed:" + JSON.stringify(err), null);
         } else {
-          $this.SweetAlert.swal("save success!");
+          $this.showMsg("save success!", null);
         }
       };
-      var user = this.Auth.getCurrentUser();
       return function (isConfirm) {
         if (isConfirm) {
-            $this.BlogService.save({md_content: $this.$scope.blogEditor, html_content: $this.marked($this.$scope.blogEditor), author: user.name, author_id: user._id})
-              .$promise.then(successCb)
-              .then(failedCb);
+          var post = $this.buildBlogPost();
+          if (!$this.checkPost(post)) {
+            return;
+          }
+          $this.BlogService.save(post)
+            .$promise.then(successCb)
+            .then(failedCb);
         }
       };
+    }
+
+    buildBlogPost() {
+      // current login user
+      var user = this.Auth.getCurrentUser();
+      return {
+        md_content: this.$scope.blogEditor,
+        html_content: this.marked(this.$scope.blogEditor),
+        author: user.name,
+        author_id: user._id,
+        tags: [{tag_id: "20001"}, {tag_id: "20002"}, {tag_id: "20003"}],
+        title: this.$scope.blog.title
+      }
+    }
+
+    checkPost(d) {
+      var flag = true;
+      var msg = [];
+      if (!d) {
+        msg.push(JSON.stringify(msg || ""));
+      } else if (!d.title) {
+        msg.push("Haven't add a title!");
+      } else if (d.title.length < 6) {
+        msg.push("Title must has more than 6 chars");
+      } else if (!d.md_content) {
+        msg.push("Haven't add content!");
+      } else if (d.md_content.length < 50) {
+        msg.push("Content must has more than 50 chars");
+      } else if (!d.author_id) {
+        msg.push("Haven't login?");
+      }
+      if (msg.length > 0) {
+        flag = false;
+        this.showMsg( JSON.stringify(msg || ""), {
+          showCancelButton: false,
+          showConfirmButton: true,
+          confirmButtonText: "OK",
+          // confirmButtonColor: "#FF0000",
+          type: "warning",
+          title: "Error:"
+        }, () => {});
+      }
+      return flag;
+    }
+
+    resetUI() {
+      this.$scope.blogSubmitStyle = {
+        "height" : "36px",
+        "float" : "right"
+      };
+    }
+
+    showMsg(msg, config, cb) {
+      if (!config || !(typeof config === 'object')) {
+        config = {};
+      }
+      if (msg) {
+        config.text = msg;
+        config.title = msg.replace(/\[/, "");
+      }
+      this.SweetAlert.swal(config, cb || (()=>{}));
     }
 
   }

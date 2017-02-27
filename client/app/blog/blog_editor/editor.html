@@ -14,16 +14,34 @@
     <div class="col-md-12 col-lg-8">
       <div class="form-group">
         <label for="comment">Live Markdown with <a href="http://www.codingdrama.com/bootstrap-markdown/">Bootstrap-Markdown Editor</a>:</label>
-								<textarea 	name="blog editor" class="content-box"
-                           ng-model="blogEditor"
-                           markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}"
-                           on-fullscreen="editor.onFullScreenCallback()"
-                           on-fullscreen-exit="editor.onFullScreenExitCallback()"
-                           rows="10" >
-    					</textarea>
-              <div class="btn btn-group" style="float: right; margin-right: 25px; margin-top: 25px; color: #00A000">
-                <button class="btn btn-primary" ng-click="editor.saveBlog()">SUBMIT</button>
-              </div>
+
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="" id="blog_head">
+          <div flex-xs flex-gt-xs="40" layout="column">
+            <md-input-container>
+              <label>Title</label>
+              <input ng-model="blog.title">
+            </md-input-container>
+          </div>
+          <md-chips flex-xs flex-gt-xs="60" layout="column"
+            ng-model="default.tags"
+            readonly="default.readonly"
+            md-removable="default.removable"
+            placeholder="Enter a tag"
+            delete-button-label="Remove Tag"
+            delete-hint="Press delete to remove tag"
+            secondary-placeholder="+Tag">
+          </md-chips>
+        </md-content>
+        <textarea id="blog_content"	name="blog editor" class="content-box"
+                   ng-model="blogEditor"
+                   markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}"
+                   on-fullscreen="editor.onFullScreenCallback()"
+                   on-fullscreen-exit="editor.onFullScreenExitCallback()"
+                   rows="10" >
+        </textarea>
+        <md-content id="blog_submit">
+            <md-button class="md-raised" ng-style="blogSubmitStyle" ng-click="editor.saveBlog()">SUBMIT</md-button>
+        </md-content>
       </div>
     </div>
   </div>
