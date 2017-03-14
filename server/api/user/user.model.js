@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import mongoose from 'mongoose';
 mongoose.Promise = require('bluebird');
 import {Schema} from 'mongoose';
-
+import mongoosePaginate from 'mongoose-paginate';
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
@@ -256,4 +256,5 @@ UserSchema.methods = {
   }
 };
 
+UserSchema.plugin(mongoosePaginate);
 export default mongoose.model('User', UserSchema);

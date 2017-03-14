@@ -58,7 +58,7 @@ Thing.find({}).remove()
   });
 
 
-User.find({}).remove()
+/*User.find({}).remove()
   .then(() => {
     User.create({
       provider: 'local',
@@ -75,7 +75,7 @@ User.find({}).remove()
     .then(() => {
       console.log('finished populating users');
     });
-  });
+  });*/
 
 /*sqldb.sequelize
   .authenticate()
@@ -97,12 +97,17 @@ Blog.find({}).remove()
     ];
     for (var i = 1; i < 51; i++) {
       blogs.push({
-        title: 'New Blog Title -' + i,
+        title: 'New Blog Title -[' + i + ']',
         author: 'Jackdon',
-        // author_id: ObjectId('5827effcb725baa40f28195e'),
+        author_id: '58ba9904c5b219734e0f1e49',
         create_time: new Date(),
         // category: ObjectId('5827effcb725baa40f281962'),
         html_content: cotent[i%2],
+        tags:[{
+          tag_id: '58ba9904c5b219734e0f1ee7',
+        }, {
+          tag_id: '58ba9904c5b219734e0f1ee6'
+        }]
       });
     }
         Blog.create(blogs)
@@ -151,10 +156,10 @@ Category.find({}).remove()
     });
   });
 
-Tag.find({}).remove()
+/*Tag.find({}).remove()
   .then(() => {
     Tag.create({tag: 'JavaScript'}, {tag: 'Java'}, {tag: 'HTML'}, {tag: 'CSS'})
       .then(() => {
         console.log("finished populating tags");
       });
-  });
+  });*/

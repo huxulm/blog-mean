@@ -34,7 +34,6 @@
     tagCb() {
       var $this = this;
       return function (d) {
-        $this.showMsg(JSON.stringify(d));
         $this.avaliableTags = d.docs;
         $this.refreshTags();
       };
@@ -100,7 +99,7 @@
         this.showMsg("will submit to server", {
             title: "Save your blog?",
             type: "info",
-            showCancelButton: false,
+            showCancelButton: true,
             closeOnConfirm: false,
             showLoaderOnConfirm: true,
           }, this.saveBlogCallback()
@@ -140,12 +139,21 @@
     buildBlogPost() {
       // current login user
       var user = this.Auth.getCurrentUser();
+      var tag_ids = [];
+      var $this = this;
+      this.$scope.default.tags.forEach(function (e) {
+        $this.$scope.avaliableTags.forEach(function (tag) {
+          if (tag.tag === e) {
+            tag_ids.push({tag_id: tag._id || null});
+          }
+        });
+      });
       return {
         md_content: this.$scope.blogEditor,
         html_content: this.marked(this.$scope.blogEditor),
         author: user.name,
         author_id: user._id,
-        tags: [{tag_id: "20001"}, {tag_id: "20002"}, {tag_id: "20003"}],
+        tags: tag_ids,
         title: this.$scope.blog.title
       }
     }

@@ -37,10 +37,9 @@
     blogDetailCallBack() {
       var $this = this;
       return function (result) {
-        $this.showMsg('Get result:' + JSON.stringify(result));
+        // $this.showMsg('Get result:' + JSON.stringify(result));
         $this.$scope.blogDetail = result;
         $this.$scope.html_content = $this.marked($this.$scope.blogDetail.md_content);
-        // $this.SweetAlert.swal($this.marked("#TEST"));
       }
     }
   }
