@@ -31,7 +31,7 @@ module.exports = {
   },
 
   mutler: {
-    dest: '/Users/xulingming/data/blog_uploads'
+    dest: '/Users/xulingming/data/blog_uploads/imgs'
   },
 
   // Seed database on startup
