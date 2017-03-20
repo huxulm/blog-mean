@@ -17,6 +17,11 @@
   /*border: 1px solid rgba(221, 223, 255, 0.6);*/
 }
 
+.blog-content img {
+  max-width: 80%;
+  padding: 5px;
+  margin-left: 10%;
+}
 
 /*highlight theme*/
 pre {

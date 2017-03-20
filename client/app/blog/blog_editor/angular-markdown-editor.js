@@ -162,11 +162,50 @@ function addNewButtons(scope) {
             callback: function (e) {
               scope.$imageCallbackArg = e;
               // scope.$eval('editor.uploadImageCall($imageCallbackArg)');
-              scope.dialogCtrl.showDialog(null);
+              (scope.dialogCtrl || scope.$parent.dialogCtrl).showDialog(null, imageUploadCallback(e));
             }
           }
         ]
     }]];
+}
+
+/**
+ * 上传图片回调
+ * @param e
+ * @returns {Function}
+ */
+function imageUploadCallback(e) {
+  return function (fileItem, response, status, headers) {
+    console.log('image upload callback', fileItem, response, status, headers);
+    if (status == 200 && response && response.status === '1') {
+      // Give ![] surround the selection and prepend the image link
+      var chunk, cursor, selected = e.getSelection(), content = e.getContent(), link;
+
+      if (selected.length === 0) {
+        // Give extra word
+        chunk = e.__localize('enter image description here');
+      } else {
+        chunk = selected.text;
+      }
+
+      link = response.data[0].url || 'http://localhost:9000/imgs/' + response.data[0].filename;
+
+      var urlRegex = new RegExp('^((http|https)://|(//))[a-z0-9]', 'i');
+      if (link !== null && link !== '' && link !== 'http://' && urlRegex.test(link)) {
+        var sanitizedLink = $('<div>'+link+'</div>').text();
+
+        // transform selection and set the cursor into chunked text
+        e.replaceSelection('!['+chunk+']('+sanitizedLink+' "'+e.__localize('enter image title here')+'")');
+        cursor = selected.start+2;
+
+        // Set the next tab
+        e.setNextTab(e.__localize('enter image title here'));
+
+        // Set the cursor
+        e.setSelection(cursor,cursor+chunk.length);
+      }
+    }
+  }
 }
 
 /** Evaluate a function name passed as string and run it from the scope.

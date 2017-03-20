@@ -8,9 +8,13 @@
  */
 
 'use strict';
+import env from '../../config/environment';
 
 export function upload(req, res, next) {
   console.log(req.files);
+  req.files.forEach(function (item, index, array) {
+    req.files[index].url = env.baseUrl + '/imgs/' + item.filename;
+  });
   res.status(200).json({status: '1', data: req.files});
 }
 

@@ -66,10 +66,12 @@
       this.$mdDialog.hide(answer);
     };
 
-    this.showDialog = function (ev) {
+    this.showDialog = function (ev, cb) {
       var $this = this;
+      $this.cb = cb;
+
       this.$scope.$mdDialog.show({
-        controller: this.imageCtrl(this),
+        controller: this.imageCtrl($this),
         templateUrl: 'app/blog/upload/dialog.tmpl.html',
         parent: angular.element(document.body),
         targetEvent: ev,
@@ -130,12 +132,15 @@
         };
         uploader.onSuccessItem = function(fileItem, response, status, headers) {
           console.info('onSuccessItem', fileItem, response, status, headers);
+          ctx.cb(fileItem, response, status, headers);
         };
         uploader.onErrorItem = function(fileItem, response, status, headers) {
           console.info('onErrorItem', fileItem, response, status, headers);
+          ctx.cb(fileItem, response, status, headers);
         };
         uploader.onCancelItem = function(fileItem, response, status, headers) {
           console.info('onCancelItem', fileItem, response, status, headers);
+          ctx.cb(fileItem, response, status, headers);
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
           console.info('onCompleteItem', fileItem, response, status, headers);
