@@ -8,14 +8,14 @@ import errors from './components/errors';
 import path from 'path';
 
 export default function(app) {
-  
+
   // Insert routes below
   app.use('/api/categories', require('./api/category'));
   app.use('/api/blogs', require('./api/blog'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
   app.use('/api/comments', require('./api/comment'));
-
+  app.post('/api/upload', require('./api/upload'));
   app.use('/auth', require('./auth').default);
 
   // All undefined asset or api routes should return a 404

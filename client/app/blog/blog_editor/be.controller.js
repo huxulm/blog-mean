@@ -5,7 +5,7 @@
 
   class BlogEditorController {
 
-    constructor($window, $rootScope, $scope, marked, SweetAlert, Blog, Auth) {
+    constructor($window, $rootScope, $scope, marked, SweetAlert, Blog, Auth, $mdDialog) {
       this.$window = $window;
       this.$scope = $scope;
       this.marked = marked;
@@ -13,6 +13,7 @@
       this.SweetAlert = SweetAlert;
       this.BlogService = Blog;
       this.Auth = Auth;
+      this.$mdDialog = $mdDialog;
     }
 
     $onInit() {
@@ -22,10 +23,10 @@
       this.$scope.blog = {title: "New Blog Title"};
       this.$scope.default = {};
       this.$scope.default.readonly = false;
-      this.$scope.default.tags = ['Java', 'Javascript', 'Node.js', 'Linux', 'Express', 'AngularJs'];
+      this.$scope.default.tags = [];
       this.$scope.default.removable = true;
 
-      this.avaliableTags =[];
+      this.$scope.avaliableTags =[];
       this.BlogService.getTags().$promise
         .then(this.tagCb());
       this.resetUI();
@@ -34,18 +35,18 @@
     tagCb() {
       var $this = this;
       return function (d) {
-        $this.avaliableTags = d.docs;
+        $this.$scope.avaliableTags = d.docs;
         $this.refreshTags();
       };
     }
 
     refreshTags() {
       var $this = this;
-      if ($this.avaliableTags.length > 0) {
+      if ($this.$scope.avaliableTags.length > 0) {
         $this.$scope.default.tags = [];
-        $this.avaliableTags.forEach(function (e) {
-          if (e.tag) {
-            $this.$scope.default.tags.push(e.tag);
+        $this.$scope.avaliableTags.forEach(function (e) {
+          if (e) {
+            $this.$scope.default.tags.push(e);
           }
         });
       }
@@ -93,7 +94,7 @@
     }*/
 
     // submit
-    saveBlog() {
+    saveBlog(ev) {
       var SweetAlert = this.SweetAlert;
       if (this.$scope.blogEditor) {
         this.showMsg("will submit to server", {
@@ -193,6 +194,12 @@
         "height" : "36px",
         "float" : "right"
       };
+
+      this.$scope.uploadImageCallback = this.uploadImageCall;
+    }
+
+    uploadImageCall(e) {
+      swal('upload image...');
     }
 
     showMsg(msg, config, cb) {

@@ -1,4 +1,4 @@
-<div class="container be">
+<div class="container be" id="blog_editor">
   <h1>Angular Markdown Editor</h1>
   <a href="https://github.com/ghiscoding/angular-markdown-editor">Ghiscoding Github Project</a> |
   <a href="http://plnkr.co/edit/jADq7H?p=preview">Plunker Live Demo</a>
@@ -30,6 +30,9 @@
             delete-button-label="Remove Tag"
             delete-hint="Press delete to remove tag"
             secondary-placeholder="+Tag">
+            <md-chip-template>
+              <span>{{$chip.tag}}</span>
+            </md-chip-template>
           </md-chips>
         </md-content>
         <textarea id="blog_content"	name="blog editor" class="content-box"
@@ -37,7 +40,8 @@
                    markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}"
                    on-fullscreen="editor.onFullScreenCallback()"
                    on-fullscreen-exit="editor.onFullScreenExitCallback()"
-                   rows="10" >
+                   rows="10"
+                   upload-image>
         </textarea>
         <md-content id="blog_submit">
             <md-button class="md-raised" ng-style="blogSubmitStyle" ng-click="editor.saveBlog()">SUBMIT</md-button>

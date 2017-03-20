@@ -69,7 +69,6 @@ function fillAuthor() {
     entity.authorPromises = [];
     if (entity && entity.docs && Array.isArray(entity.docs)) {
       entity.docs.forEach(function (e) {
-        console.log('Iterator blog: ' + JSON.stringify(e || {}));
         entity.authorPromises.push({_blog_id: e._id, $p: User.findOne({_id: e.author_id}).select(['name']).exec()});
       });
     }
@@ -154,6 +153,7 @@ export function page(req, res) {
         if (authorPromise) {
           docs.push(_.merge({
             _id: e._id,
+            title: e.title,
             html_content: e.html_content,
             modify_time: e.modify_time,
             create_time: e.create_time,

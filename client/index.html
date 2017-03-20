@@ -91,21 +91,23 @@
       <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
       <script src="bower_components/ngSweetAlert/SweetAlert.js"></script>
       <script src="bower_components/code-prettify/src/prettify.js"></script>
+      <script src="bower_components/angular-upload/angular-upload.js"></script>
+      <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
-      <script src="app/blog/blog_editor/be.module.js"></script>
       <script src="app/admin/admin.module.js"></script>
       <script src="app/blog/blog.module.js"></script>
       <script src="app/blog/blog_detail/detail.module.js"></script>
+      <script src="app/blog/blog_editor/be.module.js"></script>
       <script src="app/about/about.module.js"></script>
+      <script src="app/blog/upload/upload.module.js"></script>
       <script src="app/main/home/home.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/admin/admin.controller.js"></script>
-      <script src="app/about/about.controller.js"></script>
+      <script src="app/blog/blog_editor/be.router.js"></script>
       <script src="app/admin/admin.router.js"></script>
       <script src="app/app.constant.js"></script>
       <script src="app/blog/blog.controller.js"></script>
@@ -118,12 +120,15 @@
       <script src="app/blog/blog_editor/angular-markdown-editor.js"></script>
       <script src="app/blog/blog_editor/be.controller.js"></script>
       <script src="app/account/account.js"></script>
-      <script src="app/blog/blog_editor/be.router.js"></script>
       <script src="app/account/login/login.controller.js"></script>
+      <script src="app/blog/upload/upload.directive.js"></script>
+      <script src="app/account/settings/settings.controller.js"></script>
+      <script src="app/blog/upload/upload.service.js"></script>
+      <script src="app/account/signup/signup.controller.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/test/test.js"></script>
-      <script src="app/account/settings/settings.controller.js"></script>
+      <script src="app/admin/admin.controller.js"></script>
       <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
@@ -135,7 +140,7 @@
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
-      <script src="app/account/signup/signup.controller.js"></script>
+      <script src="app/about/about.controller.js"></script>
       <script src="components/util/util.service.js"></script>
       <script src="bower_components/highlight.js.origin/src/highlight.js"></script>
       <!-- endinjector -->

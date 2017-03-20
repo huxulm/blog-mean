@@ -32,6 +32,9 @@ module.exports = function(config) {
       'client/bower_components/bootstrap-markdown/js/bootstrap-markdown.js',
       'client/bower_components/sweetalert/dist/sweetalert.min.js',
       'client/bower_components/ngSweetAlert/SweetAlert.js',
+      'client/bower_components/code-prettify/src/prettify.js',
+      'client/bower_components/angular-upload/angular-upload.js',
+      'client/bower_components/angular-file-upload/dist/angular-file-upload.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

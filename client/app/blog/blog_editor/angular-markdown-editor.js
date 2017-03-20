@@ -1,69 +1,78 @@
 angular
-  .module('angular-markdown-editor', [])
+  .module('angular-markdown-editor', ['ngMaterial'])
   .directive('markdownEditor', ['$rootScope', function ($rootScope) {
+
     return {
         restrict: 'A',
-        require:  'ngModel',
-        link: function(scope, element, attrs, ngModel) {
-          var options = scope.$eval(attrs.markdownEditor);
-
+        require:  ['ngModel', 'uploadImage'],
+        scope: false,
+        link: {
+          pre: function preLink(scope, element, attrs, injectors) {
+            var options = scope.$eval(attrs.markdownEditor);
+            var ngModel = injectors[0];
+            var dialogCtrl = injectors[1];
             // Only initialize the $.markdown plugin once.
             if (! element.hasClass('processed')) {
-                element.addClass('processed');
+              element.addClass('processed');
 
-                // Setup the markdown WYSIWYG.
-                element.markdown({
-                  autofocus: options.autofocus || false,
-                  saveable: options.saveable || false,
-                  iconlibrary: options.iconlibrary || 'glyph',
-                  hideable: options.hideable || false,
-                  width: options.width || 'inherit',
-                  height: options.height || 'inherit',
-                  resize: options.resize || 'none',
-                  language: options.language || 'en',
-                  footer: options.footer || '',
-                  fullscreen: options.fullscreen || { enable: true, icons: {}},
-                  hiddenButtons: options.hiddenButtons || null,
-                  disabledButtons: options.disabledButtons || null,
-                  initialstate: options.initialstate || 'editor',
-                  parser: options.parser || null,
-                  dropZoneOptions: options.dropZoneOptions || null,
-                  enableDropDataUri: options.enableDropDataUri || false,
-                  showButtons: options.showButtons || null,
-                  additionalButtons: options.additionalButtons || (options.addExtraButtons ? addNewButtons() : []),
+              // Setup the markdown WYSIWYG.
+              element.markdown({
+                autofocus: options.autofocus || false,
+                saveable: options.saveable || false,
+                iconlibrary: options.iconlibrary || 'glyph',
+                hideable: options.hideable || false,
+                width: options.width || 'inherit',
+                height: options.height || 'inherit',
+                resize: options.resize || 'none',
+                language: options.language || 'en',
+                footer: options.footer || '',
+                fullscreen: options.fullscreen || { enable: true, icons: {}},
+                hiddenButtons: options.hiddenButtons || null,
+                disabledButtons: options.disabledButtons || null,
+                initialstate: options.initialstate || 'editor',
+                parser: options.parser || null,
+                dropZoneOptions: options.dropZoneOptions || null,
+                enableDropDataUri: options.enableDropDataUri || false,
+                showButtons: options.showButtons || null,
+                additionalButtons: options.additionalButtons || (options.addExtraButtons ? addNewButtons(scope) : []),
 
-                  //-- Events/Hooks --
-                  // each of them are defined as callback available in the directive
-                  // example: <textarea markdown-editor="{'iconlibrary': 'fa'}" on-fullscreen-exit="vm.exitFullScreenCallback()"></textarea>
-                  //  NOTE: If you want this one to work, you will have to manually download the JS file, not sure why but they haven't released any versions in a while
-                  //       https://github.com/toopay/bootstrap-markdown/tree/master/js
-                  onPreview: function (e) { runScopeFunction(scope, attrs.onPreview, e); },
-                  onPreviewEnd: function (e) { runScopeFunction(scope, attrs.onPreviewEnd, e); },
-                  onSave: function (e) { runScopeFunction(scope, attrs.onSave, e); },
-                  onBlur: function (e) { runScopeFunction(scope, attrs.onBlur, e); },
-                  onFocus: function (e) { runScopeFunction(scope, attrs.onFocus, e); },
-                  onFullscreen: function (e) { runScopeFunction(scope, attrs.onFullscreen, e); },
-                  onSelect: function (e) { runScopeFunction(scope, attrs.onSelect, e); },
-                  onFullscreenExit: function (e) { runScopeFunction(scope, attrs.onFullscreenExit, e); },
-                  onChange: function(e) {
-                    // When a change occurs, we need to update scope in case the user clicked one of the plugin buttons
-                    // (which isn't the same as a keydown event that angular would listen for).
-                    ngModel.$setViewValue(e.getContent());
+                //-- Events/Hooks --
+                // each of them are defined as callback available in the directive
+                // example: <textarea markdown-editor="{'iconlibrary': 'fa'}" on-fullscreen-exit="vm.exitFullScreenCallback()"></textarea>
+                //  NOTE: If you want this one to work, you will have to manually download the JS file, not sure why but they haven't released any versions in a while
+                //       https://github.com/toopay/bootstrap-markdown/tree/master/js
+                onPreview: function (e) { runScopeFunction(scope, attrs.onPreview, e); },
+                onPreviewEnd: function (e) { runScopeFunction(scope, attrs.onPreviewEnd, e); },
+                onSave: function (e) { runScopeFunction(scope, attrs.onSave, e); },
+                onBlur: function (e) { runScopeFunction(scope, attrs.onBlur, e); },
+                onFocus: function (e) { runScopeFunction(scope, attrs.onFocus, e); },
+                onFullscreen: function (e) { runScopeFunction(scope, attrs.onFullscreen, e); },
+                onSelect: function (e) { runScopeFunction(scope, attrs.onSelect, e); },
+                onFullscreenExit: function (e) { runScopeFunction(scope, attrs.onFullscreenExit, e); },
+                onChange: function(e) {
+                  // When a change occurs, we need to update scope in case the user clicked one of the plugin buttons
+                  // (which isn't the same as a keydown event that angular would listen for).
+                  ngModel.$setViewValue(e.getContent());
 
-                    runScopeFunction(scope, attrs.onChange, e);
-                  },
-                  onShow: function (e) {
-                    // keep the Markdown Object in $rootScope so that it's available also from anywhere (like in the parent controller)
-                    // we will keep this in an object under the ngModel name so that it also works having multiple editor in same controller
-                    $rootScope.markdownEditorObjects = $rootScope.markdownEditorObjects || {};
-                    $rootScope.markdownEditorObjects[ngModel.$name] = e;
+                  runScopeFunction(scope, attrs.onChange, e);
+                },
+                onShow: function (e) {
+                  // keep the Markdown Object in $rootScope so that it's available also from anywhere (like in the parent controller)
+                  // we will keep this in an object under the ngModel name so that it also works having multiple editor in same controller
+                  $rootScope.markdownEditorObjects = $rootScope.markdownEditorObjects || {};
+                  $rootScope.markdownEditorObjects[ngModel.$name] = e;
 
-                    if (!!attrs.onShow) {
-                      runScopeFunction(scope, attrs.onShow, e);
-                    }
+                  if (!!attrs.onShow) {
+                    runScopeFunction(scope, attrs.onShow, e);
                   }
-                });
+                }
+              });
             }
+          },
+
+          post: function postLink(scope, iElement, iAttrs, controller) {
+            this.scope = scope;
+          }
         }
     };
 }]);
@@ -72,7 +81,7 @@ angular
  * Add new extra buttons: Strikethrough & Table
  * @return mixed additionButtons
  */
-function addNewButtons() {
+function addNewButtons(scope) {
   return [[{
         name: "groupFont",
         data: [{
@@ -139,7 +148,25 @@ function addNewButtons() {
             e.setSelection(cursor,cursor+chunk.length);
           }
         }]
-  }]];
+  }, {
+        name: "groupLink",
+        data: [
+          {
+            name: "cmdImageUpload",
+            toggle: false,
+            title: "UploadImage",
+            icon: {
+              fa: "fa fa-file-image-o",
+              glyph: "glyphicon glyphicon-upload"
+            },
+            callback: function (e) {
+              scope.$imageCallbackArg = e;
+              // scope.$eval('editor.uploadImageCall($imageCallbackArg)');
+              scope.dialogCtrl.showDialog(null);
+            }
+          }
+        ]
+    }]];
 }
 
 /** Evaluate a function name passed as string and run it from the scope.
@@ -150,6 +177,7 @@ function addNewButtons() {
   * @result mixed result
   */
 function runScopeFunction(scope, fnString, editorObject) {
+  var result;
   if (!fnString) {
     return;
   }
