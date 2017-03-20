@@ -205,6 +205,7 @@
 .blog-card .description {
   padding: 10px;
   box-sizing: border-box;
+  height: 100%;
   position: relative;
 }
 .blog-card .description h2 {
@@ -259,6 +260,11 @@
     max-height: 100px;
     /*background: #75D13B;*/
     overflow: hidden;
+}
+
+.summary img {
+  max-width: 100px;
+  max-height: 80px;
 }
 
 @media screen and (min-width: 600px) {
