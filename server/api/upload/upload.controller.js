@@ -11,7 +11,7 @@
 
 export function upload(req, res, next) {
   console.log(req.files);
-  res.status(200).json({status: 'OK'});
+  res.status(200).json({status: '1', data: req.files});
 }
 
 

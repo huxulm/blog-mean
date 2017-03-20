@@ -2,10 +2,23 @@
 
 var express = require('express');
 var controller = require('./upload.controller');
-
+var env = require('../../config/environment');
 var router = express.Router();
-var multer  = require('multer');
-var upload = multer({ dest: 'images/' });
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, env.mutler.dest);
+  },
+  filename: function (req, file, cb) {
+    let sufix = file.mimetype.toString().substring(file.mimetype.indexOf('/') + 1);
+    let storeName = file.fieldname + '-' + Date.now() + '.' + sufix;
+    console.log('file store name: ' + storeName);
+    cb(null, storeName);
+  }
+});
+
+var upload = multer({ storage: storage })
 
 router.post('/', upload.any(),controller.upload);
 

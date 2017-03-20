@@ -22,10 +22,8 @@
       compile: function compile(tElement, tAttrs, transclude) {
         return {
           pre: function preLink(scope, iElement, iAttrs, controller) {
-            swal('dialog pre...');
           },
           post: function postLink(scope, iElement, iAttrs, controller) {
-            swal('dialog post...');
           }
         };
       }
@@ -34,9 +32,10 @@
   }
 
   // dialog view
-  function DialogController($scope, $element, $attrs, $transclude, $mdDialog, FileUploader) {
+  function DialogController($scope, $element, $attrs, $transclude, $mdDialog, $cookies, FileUploader) {
     this.$scope = $scope;
     this.$scope.$mdDialog = $mdDialog;
+    this.$scope.$cookies = $cookies;
 
     $scope.hide = function() {
       this.$scope.$mdDialog.hide();
@@ -91,10 +90,14 @@
         $scope.hide = ctx.$scope.hide;
         $scope.answer = ctx.$scope.answer;
         $scope.$mdDialog = ctx.$scope.$mdDialog;
+        $scope.$cookies = ctx.$scope.$cookies;
         $scope.test = "test...";
 
         var uploader = $scope.uploader = new FileUploader({
-          url: '/api/upload'
+          url: '/api/upload',
+          headers: {
+            'X-XSRF-TOKEN': $scope.$cookies.get('XSRF-TOKEN') || ''
+          }
         });
 
         uploader.filters.push({

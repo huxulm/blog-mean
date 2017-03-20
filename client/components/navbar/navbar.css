@@ -1,6 +1,6 @@
 /*toolbar background color*/
 .tabs.md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar), .tabs.md-toolbar {
-    background-color: green;
+  background: rgba(63,81,181, 0.6)
 }
 
 .tab-item > .md-button:hover {

@@ -67,6 +67,7 @@ export default function(app) {
   }
 
   app.set('appPath', path.join(config.root, 'client'));
+  console.log('APP path: ' + app.get('appPath'));
 
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
@@ -86,6 +87,7 @@ export default function(app) {
 
   if ('development' === env || 'test' === env) {
     app.use(express.static(path.join(config.root, '.tmp')));
+    app.use(express.static(config.mutler.dest));
     app.use(express.static(app.get('appPath')));
     app.use(morgan('dev'));
     app.use(errorHandler()); // Error handler - has to be last

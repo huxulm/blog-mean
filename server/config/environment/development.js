@@ -30,6 +30,10 @@ module.exports = {
     }
   },
 
+  mutler: {
+    dest: '/Users/xulingming/data/blog_uploads'
+  },
+
   // Seed database on startup
   seedDB: false
 
