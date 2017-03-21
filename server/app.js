@@ -36,8 +36,6 @@ var server = http.createServer(app);
 require('./config/express').default(app);
 require('./routes').default(app);
 
-console.log('环境信息:', process.env);
-
 // Start server
 function startServer() {
   app.angularFullstack = server.listen(config.port, config.ip, function() {

@@ -1,5 +1,7 @@
 'use strict';
 
+console.log('环境信息:', process.env);
+
 // Set default node environment to development
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
