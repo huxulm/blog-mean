@@ -16,7 +16,7 @@ import mongoose from 'mongoose';
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-Thing.find({}).remove()
+/*Thing.find({}).remove()
   .then(() => {
     Thing.create({
       name: 'Development Tools',
@@ -55,16 +55,16 @@ Thing.find({}).remove()
                 }
             });
         });
-  });
+  });*/
 
 
-/*User.find({}).remove()
+User.find({}).remove()
   .then(() => {
     User.create({
       provider: 'local',
       name: 'Test User',
-      email: 'test@example.com',
-      password: 'test'
+      email: 'jackdon@gmail.com',
+      password: 'xlmxlm00a'
     }, {
       provider: 'local',
       role: 'admin',
@@ -75,7 +75,7 @@ Thing.find({}).remove()
     .then(() => {
       console.log('finished populating users');
     });
-  });*/
+  });
 
 /*sqldb.sequelize
   .authenticate()
@@ -87,7 +87,7 @@ Thing.find({}).remove()
   });*/
 
 
-Blog.find({}).remove()
+/*Blog.find({}).remove()
   .then(() => {
 
     var blogs = [];
@@ -134,7 +134,7 @@ Blog.find({}).remove()
                 });
         });
     });
-  });
+  });*/
 
 Category.find({}).remove()
   .then(() => {
@@ -156,10 +156,10 @@ Category.find({}).remove()
     });
   });
 
-/*Tag.find({}).remove()
+Tag.find({}).remove()
   .then(() => {
     Tag.create({tag: 'JavaScript'}, {tag: 'Java'}, {tag: 'HTML'}, {tag: 'CSS'})
       .then(() => {
         console.log("finished populating tags");
       });
-  });*/
+  });

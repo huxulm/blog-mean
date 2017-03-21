@@ -23,8 +23,8 @@ var all = {
 
   // Server IP
   ip: process.env.IP || '0.0.0.0',
-  
-  baseUrl: 'http://localhost:9000',
+
+  baseUrl: 'http://' + (process.env.IP || 'localhost') +':9000',
 
   // Should we populate the DB with sample data?
   seedDB: false,
@@ -68,5 +68,5 @@ module.exports = _.merge(
   all,
   require('./shared'),
   require('./' + process.env.NODE_ENV + '.js') || {});
-  
-// console.log(_.merge(all, require('./shared')));  
+
+// console.log(_.merge(all, require('./shared')));

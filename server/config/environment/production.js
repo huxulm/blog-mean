@@ -26,7 +26,7 @@ module.exports = {
   sequelize: {
     database: 'snoopy',
     username: 'root',
-    password: 'xlm1',	
+    password: 'xlm1',
     //uri: 'mysql://localhost:3306/snoopy-dev',
     options: {
       dialect: 'mysql',
@@ -35,11 +35,19 @@ module.exports = {
       dialectModulePath: null,
       logging: false,
 
-      // only for sqlite	
+      // only for sqlite
       //storage: 'dev.sqlite',
       define: {
         timestamps: false
       }
     }
   },
+
+  mutler: {
+    dest: process.env.MULTER_DEST,
+    dir: process.env.MULTER_DIR
+  },
+
+  // Seed database on startup
+  seedDB: true
 };
