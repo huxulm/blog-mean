@@ -5,14 +5,14 @@
 
 (function () {
     class AboutController {
-      
+
         constructor(About) {
             this.About = About;
         }
 
         $onInit() {
           var info = this.About.getAboutInfo();
-          console.log("-------->" + JSON.stringify(info));
+          console.log('-------->' + JSON.stringify(info));
         }
     }
 

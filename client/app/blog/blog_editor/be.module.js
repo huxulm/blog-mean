@@ -1,6 +1,8 @@
 /**
  * Created by xulingming on 2017/2/19.
  */
+'use strict';
+
 angular.module('snoopyApp.home.blogEditor', ['hc.marked', 'hljs', 'angular-markdown-editor', 'oitozero.ngSweetAlert', 'ngMaterial', 'ngMessages'])
   .config(['markedProvider', 'hljsServiceProvider', function(markedProvider, hljsServiceProvider) {
   // marked config

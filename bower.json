@@ -16,7 +16,6 @@
     "angular-ui-router": "~0.3.2",
     "angular-validation-match": "~1.5.2",
     "angular-material": "^1.0.9",
-    "Font-Awesome-SVG-PNG": "font-awesome-svg-png#^1.1.5",
     "highlight.js.origin": "highlight#^9.9.0",
     "angular-highlightjs": "^0.6.1",
     "angular-marked": "^1.2.2",

@@ -86,7 +86,7 @@
     "istanbul": "~0.4.1",
     "jasmine-core": "^2.3.4",
     "jasmine-spec-reporter": "^2.4.0",
-    "jit-grunt": "~0.10.0",
+    "jit-grunt": "^0.10.0",
     "jshint-stylish": "^2.2.0",
     "karma": "~0.13.3",
     "karma-babel-preprocessor": "^6.0.1",

@@ -1,6 +1,8 @@
 /**
  * Created by xulingming on 2017/2/26.
  */
+'use strict';
+
 angular.module('snoopyApp.blog')
 .config(function ($stateProvider) {
   $stateProvider.state('main.blog.detail', {

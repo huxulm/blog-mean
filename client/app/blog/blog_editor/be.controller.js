@@ -73,7 +73,7 @@
      * For a list of API functions take a look on official demo site http://www.codingdrama.com/bootstrap-markdown/
      * @param object e: Markdown Editor object
      */
-    onFullScreenCallback = function(e) {
+    onFullScreenCallback(e) {
       e.showPreview();
     }
 
@@ -81,7 +81,7 @@
      * NOTE: If you want this one to work, you will have to manually download the JS file, not sure why but they haven't released any versions in a while
      *       https://github.com/toopay/bootstrap-markdown/tree/master/js
      */
-    onFullScreenExitCallback = function(e) {
+    onFullScreenExitCallback(e) {
       e.hidePreview();
     }
 

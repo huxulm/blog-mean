@@ -38,7 +38,7 @@
     }
 
     index(idx) {
-      if (".." == idx) {
+      if ('..' === idx) {
         return;
       }
     }
@@ -49,7 +49,7 @@
       this.pageSize = this.pageSize || 15;
       this.total = this.total || 0;
 
-      console.log("Before refresh page:" + "pageSize:%s,total:%s,pages:%s,currentPage:%s", this.pageSize, this.total, this.pages, this.currentPage);
+      console.log('Before refresh page:' + 'pageSize:%s,total:%s,pages:%s,currentPage:%s', this.pageSize, this.total, this.pages, this.currentPage);
 
       // get data
       this.Blog.getPage({page: this.currentPage, limit: this.pageSize})
@@ -83,11 +83,11 @@
     getIndexArr() {
       var arr = [];
       for (var i = 0; i < 5; i++) {
-        arr[i] = (i + 1) + "";
+        arr[i] = (i + 1) + '';
       }
       if (this.pages > 5) {
-        arr[arr.length - 2] = "..";
-        arr[arr.length - 1] = this.pages + "";
+        arr[arr.length - 2] = '..';
+        arr[arr.length - 1] = this.pages + '';
       }
       return arr;
     }

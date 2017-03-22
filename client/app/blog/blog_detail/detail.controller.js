@@ -12,27 +12,26 @@
       this.$stateParams = $stateParams;
       this.SweetAlert = SweetAlert;
       this.BlogService = Blog;
-      this.blogDetail;
       this.marked = marked;
     }
 
     $onInit() {
       this.getBlogDetail(this.blogDetailCallBack());
-      this.$scope.blog_markdown = marked("#TEST");
-    }
+      this.$scope.blogMarkdown = marked('#TEST');
+    };
 
     showMsg(msg) {
       if (this.SweetAlert) {
         this.SweetAlert.swal('Blog Detail', 'show detail' + (msg || ''), 'success');
       }
-    }
+    };
 
     getBlogDetail(cb) {
       this.BlogService.get({id: this.$stateParams.blogId})
         .$promise.then(function (result) {
         cb(result);
       });
-    }
+    };
 
     blogDetailCallBack() {
       var $this = this;
@@ -41,7 +40,7 @@
         $this.$scope.blogDetail = result;
         $this.$scope.html_content = $this.marked($this.$scope.blogDetail.md_content);
       }
-    }
+    };
   }
 
   angular.module('snoopyApp.blog.blogDetail')
