@@ -75,7 +75,7 @@
         templateUrl: 'app/blog/upload/dialog.tmpl.html',
         parent: angular.element(document.body),
         targetEvent: ev,
-        clickOutsideToClose:true,
+        clickOutsideToClose: false,
         // fullscreen: this.$scope.customFullscreen // Only for -xs, -sm breakpoints.
       })
         .then(function(answer) {
@@ -86,7 +86,7 @@
     };
 
     this.imageCtrl = function (ctx){
-      return function ($scope, FileUploader) {
+      var __ctrl =function ($scope, FileUploader) {
         console.log('image ctrl...');
         $scope.cancel = ctx.$scope.cancel;
         $scope.hide = ctx.$scope.hide;
@@ -148,7 +148,11 @@
         uploader.onCompleteAll = function() {
           console.info('onCompleteAll');
         };
-      }
+      };
+
+      __ctrl.$inject = ['$scope', 'FileUploader'];
+
+      return __ctrl;
     };
   }
 
