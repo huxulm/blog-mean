@@ -98,3 +98,7 @@ table tr:hover td {
 .be {
   height: 800px;
 }
+
+.be-panel {
+  margin-top: 10%;
+}
