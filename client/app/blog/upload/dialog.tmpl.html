@@ -46,12 +46,12 @@
 
             <table class="table">
               <thead>
-              <tr>
-                <th width="50%">文件名称</th>
-                <th ng-show="uploader.isHTML5" class="">文件大小</th>
-                <th ng-show="uploader.isHTML5">进度</th>
-                <th>状态</th>
-                <th>动作</th>
+              <tr class="active">
+                <th class="active">文件名称</th>
+                <th ng-show="uploader.isHTML5" class="success">文件大小</th>
+                <th ng-show="uploader.isHTML5" class="info" style="width: 30%">进度</th>
+                <th class="warning">状态</th>
+                <th class="danger">动作</th>
               </tr>
               </thead>
               <tbody>
@@ -67,8 +67,8 @@
                   <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
                 </td>
                 <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-                <td ng-show="uploader.isHTML5">
-                  <div class="progress" style="margin-bottom: 0;">
+                <td ng-show="uploader.isHTML5" class="info" style="width: 30%">
+                  <div class="progress" style="margin-bottom: 0; width: 100%">
                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
                   </div>
                 </td>
@@ -95,7 +95,7 @@
             <div>
               <div>
                 上传总进度:
-                <div class="progress" style="">
+                <div class="progress">
                   <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                 </div>
               </div>
@@ -117,10 +117,6 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-        More on Wikipedia
-      </md-button>
-      <span flex></span>
       <md-button ng-click="answer('not useful')">
         Not Useful
       </md-button>

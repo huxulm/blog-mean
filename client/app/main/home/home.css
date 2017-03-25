@@ -1,22 +1,54 @@
 #blog-home {
-  background: url("../../../assets/images/japanese_cherry_trees.png");
-  background-size: cover;
   width: 100%;
-  height: 800px;
-  line-height: 800px;
-  text-align: center;
+  /*height: 800px;*/
 }
 
-#blog-home > a {
+.home-img {
+  height: 800px;
   color: rgba(221, 223, 255, 0.4);
-  display: inline-block;
   font-size: 400%;
-  line-height: normal;
-  margin: 0 auto;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-#blog-home > a:hover {
-  color: rgba(221, 223, 255, 0.8);
+
+.home-txt > a:hover {
+  color: rgba(136, 128, 255, 0.4);
+  text-decoration: none;
+}
+
+.home-txt {
+  text-align: center;
+  color: rgba(136, 128, 255, 0.9);
+  flex: 1;
+}
+
+.home-txt > a {
+  color: rgba(136, 128, 255, 0.9);
+}
+
+@media (min-width: 412px) {
+  .home-img {
+    height: 732px;
+  }
+}
+
+@media (min-width: 320px) {
+  .home-img {
+    height: 568px;
+  }
+}
+
+@media (min-width: 360px) {
+  .home-img {
+    height: 640px;
+  }
+}
+
+@media (min-width: 375px) {
+  .home-img {
+    height: 667px;
+  }
 }

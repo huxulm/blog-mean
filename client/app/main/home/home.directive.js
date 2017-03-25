@@ -23,7 +23,17 @@
           pre: function preLink(scope, iElement, iAttrs, controller) {
           },
           post: function postLink(scope, iElement, iAttrs, controller) {
-            iAttrs.$set('style', 'background-image:url(\"http://ww1.sinaimg.cn/crop.0.0.920.300/afe3ed99gw1f867y8d5ntj20pk08cq4s.jpg\")');
+            iAttrs.$set('style', 'background-image:url(\"http://images.sjq315.com/UploadFiles/Version2/4495/20161024/201610241440437499.jpg\")');
+
+            /*var $imgParent = iElement.parent();
+            console.log('parent element:' + iElement.parent());
+            var $imgParentHeight = $imgParent.height();
+
+            var $imgHeight = iElement.height();
+            console.log('imgHeight:' + $imgHeight, ', parentHeight:' + $imgParentHeight);
+
+            console.log('screen:' + 'width:' + window.screen.availWidth + ', height:' + window.screen.availHeight);
+            console.log('screen:' + 'width:' + window.screen.width + ', height:' + window.screen.height);*/
           }
         };
       }

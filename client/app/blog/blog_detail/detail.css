@@ -3,9 +3,24 @@
   background: #fff;
   padding:50px;
   width: 810px;
-  /*min-height: 1200px;*/
+  min-height: 1200px;
   margin: 20px auto 0 auto;
   box-shadow: -4px -4px 4px rgba(100,100,100,.2);
+}
+@media (min-width: 768px) {
+  .blog-detail {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .blog-detail {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .blog-detail {
+    width: 1170px;
+  }
 }
 
 .blog-detail-title {
