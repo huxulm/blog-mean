@@ -1,5 +1,5 @@
 .blog-detail {
-  position: relative;
+  position: absolute;
   background: #fff;
   padding:50px;
   width: 810px;
@@ -7,6 +7,7 @@
   margin: 20px auto 0 auto;
   box-shadow: -4px -4px 4px rgba(100,100,100,.2);
 }
+
 @media (min-width: 768px) {
   .blog-detail {
     width: 750px;
