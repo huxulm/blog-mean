@@ -1,0 +1,11 @@
+{
+  "appenders": [
+    {
+      "type": "file",
+      "filename": "/log/blog.log",
+      "maxLogSize": 20480,
+      "backups": 10,
+      "category": "blog"
+    }
+  ]
+}

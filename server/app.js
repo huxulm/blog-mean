@@ -10,6 +10,7 @@ mongoose.Promise = require('bluebird');
 import sqldb from './sqldb';
 import config from './config/environment';
 import http from 'http';
+import LOGGER from './config/log';
 
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -33,20 +34,24 @@ if (config.seedDB) { require('./config/seed'); }
 // Setup server
 var app = express();
 var server = http.createServer(app);
+// log
+var logger = LOGGER.getLogger('blog');
+logger.setLevel('INFO');
+app.use(LOGGER.connectLogger(logger, { level: LOGGER.levels.INFO}));
 require('./config/express').default(app);
 require('./routes').default(app);
 
 // Start server
 function startServer() {
   app.angularFullstack = server.listen(config.port, config.ip, function() {
-    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+    logger.info('Express server listening on %d, in %s mode', config.port, app.get('env'));
   });
 }
 
 sqldb.sequelize.sync()
   .then(startServer)
   .catch(function(err) {
-    console.log('Server failed to start due to error: %s', err);
+    logger.info('Server failed to start due to error: %s', err);
   });
 
 // Expose app

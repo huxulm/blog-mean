@@ -48,6 +48,8 @@ module.exports = {
     dir: process.env.MULTER_DIR
   },
 
+  logDir: process.env.BLOG_LOG || '/home/logs',
+
   // Seed database on startup
   seedDB: true
 };
