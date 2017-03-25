@@ -2,10 +2,17 @@
   "appenders": [
     {
       "type": "file",
-      "filename": "/log/blog.log",
+      "filename": "/log/info/blog.log",
       "maxLogSize": 20480,
       "backups": 10,
-      "category": "blog"
+      "category": "blog-info"
+    },
+    {
+      "type": "file",
+      "filename": "/log/err/error.log",
+      "maxLogSize": 20480,
+      "backups": 10,
+      "category": "blog-err"
     }
   ]
 }

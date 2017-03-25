@@ -35,7 +35,7 @@ if (config.seedDB) { require('./config/seed'); }
 var app = express();
 var server = http.createServer(app);
 // log
-var logger = LOGGER.getLogger('blog');
+var logger = LOGGER.getLogger('blog-info');
 logger.setLevel('INFO');
 app.use(LOGGER.connectLogger(logger, { level: LOGGER.levels.INFO}));
 require('./config/express').default(app);
