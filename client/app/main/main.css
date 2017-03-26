@@ -32,3 +32,22 @@ main {
   -webkit-background-size: cover;
   filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
 }
+
+.navbar > div {
+  background-color: rgba(101, 63, 255, 0.4);
+}
+
+@media handheld, screen and (max-device-width: 480px){
+  .navbar {
+    background-color: rgba(101, 63, 255, 0.4);
+  }
+  .navbar-toggle {
+    background-color: rgba(101, 63, 255, 0.8);
+  }
+  .navbar-default .navbar-brand {
+    color: white;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: lightgrey;
+  }
+}
