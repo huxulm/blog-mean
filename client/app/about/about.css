@@ -97,7 +97,13 @@ handheld, screen and (max-device-width: 480px), handheld,screen and (max-width: 
     width: 100%;
     height: 45%;
   }
-
+  .about-info-view {
+    float: left;
+  }
+  #about {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .album-photo {
