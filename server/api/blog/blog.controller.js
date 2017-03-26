@@ -41,7 +41,7 @@ function shortBlogContent() {
       for (var index = 0; index < entity.docs.length; index++) {
         // console.log('Blog index ' + index + ': ' + entity[index]);
         // entity[index].content = entity[index].content.subString(0, 10);
-        if(entity.docs[index].html_content) {
+        if(entity.docs[index].html_content && entity.docs[index].html_content.length > APP_CONSTS.BLOG_LIST_CONTENT_LENGTH_LIMIT) {
           entity.docs[index].html_content = entity.docs[index].html_content.substring(0, APP_CONSTS.BLOG_LIST_CONTENT_LENGTH_LIMIT);
         }
       }
