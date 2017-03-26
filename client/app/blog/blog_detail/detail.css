@@ -1,5 +1,4 @@
 .blog-detail {
-  position: absolute;
   background: #fff;
   padding:50px;
   width: 810px;
@@ -8,20 +7,16 @@
   box-shadow: -4px -4px 4px rgba(100,100,100,.2);
 }
 
-@media (min-width: 768px) {
+@media handheld, screen and (max-device-width: 480px), handheld, screen and (max-width: 480px) {
   .blog-detail {
-    width: 750px;
+    padding: 2%;
+    width: 100%;
+    margin-top: 0px;
   }
 }
-@media (min-width: 992px) {
-  .blog-detail {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .blog-detail {
-    width: 1170px;
-  }
+
+.blog-detail.ul {
+  overflow: hidden;
 }
 
 .blog-detail-title {
