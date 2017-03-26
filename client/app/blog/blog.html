@@ -5,7 +5,7 @@
       <div class="blog-card {{$index%2!=0? 'alt' : ''}}">
         <div class="photo {{$index%2!=0? 'photo1' : 'photo2'}}"></div>
         <ul class="details">
-          <li class="author"><a href="#">{{item.author}}</a></li>
+          <li class="author"><a href="#">{{item.author.name}}</a></li>
           <li class="date">{{item.create_time}}</li>
           <li class="tags">
             <ul>
