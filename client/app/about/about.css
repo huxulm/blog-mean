@@ -100,6 +100,9 @@ handheld, screen and (max-device-width: 480px), handheld,screen and (max-width: 
   .about-info-view {
     float: left;
   }
+}
+
+@media screen and (max-width: 480px) {
   #about {
     width: 100%;
     margin-left: 0;
