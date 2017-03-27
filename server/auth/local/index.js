@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
     if (!user) {
       return res.status(404).json({message: 'Something went wrong, please try again.'});
     }
-
+    require('../../monitor/statics')._static_login(req, res, next, user);
     var token = signToken(user._id, user.role);
     res.json({ token });
   })(req, res, next)

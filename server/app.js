@@ -34,6 +34,10 @@ if (config.seedDB) { require('./config/seed'); }
 // Setup server
 var app = express();
 var server = http.createServer(app);
+
+// static
+app.use(require('./monitor/statics')._static);
+
 // log
 var logger = LOGGER.getLogger('blog-info');
 logger.setLevel('INFO');
