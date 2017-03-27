@@ -47,34 +47,34 @@ export function _static (req, res, next) {
 export function _static_login(req, res, next, user) {
   console.log('Login user:' + JSON.stringify(user));
   Login.findOne({uid: {$eq: user._id}}) // 最近登录
+    .limit(1)
+    .sort({create_time: 'desc'})
     .exec()
     .then(function (lastLogin) {
-      console.log('last login user:' + JSON.stringify(lastLogin));
+      _logger.info('last login user:' + JSON.stringify(lastLogin));
       if (lastLogin) {
-        console.log('type of:' + (typeof lastLogin.create_time) + ', ' + lastLogin.create_time.toString());
-        if (lastLogin.create_time.toString().substring(0, 10) !== Date.now().toString().substring(0, 10)) {
+        console.log('type of:' + (typeof lastLogin.create_time) + ', ' + lastLogin.create_time.toLocaleString());
+        if (lastLogin.create_time.toLocaleString().substring(0, 10) !== new Date().toLocaleString().substring(0, 10)) {
           return Login.create({
             uid: user._id,
             uname: user.name,
             login_count: 1,
             today_login: 1,
           }).then(function (lastLogin) {
+            _logger.info('create new login log:' + JSON.stringify(lastLogin));
             return lastLogin;
           });
         } else {
           lastLogin.login_count += 1;
           lastLogin.today_login += 1;
           lastLogin.last_login= Date.now();
-          console.log('update login...............');
           return lastLogin.save().then(function (lastLogin) {
-            console.log('after .....');
             return lastLogin;
           }).catch(function (err) {
             console.log(err ? err : 'update error');
           });
         }
       } else {
-        console.log('before update login:' + JSON.stringify(lastLogin));
         return Login.create({
           uid: user._id,
           uname: user.name,
@@ -88,7 +88,7 @@ export function _static_login(req, res, next, user) {
       }
     })
     .then(function (lastLogin) {
-      console.log('login log:' + JSON.stringify(lastLogin || {}));
+      _logger.info('this time login log:' + JSON.stringify(lastLogin || {}));
     })
     .catch(function (err) {
       console.log(err ? err : 'static error');
