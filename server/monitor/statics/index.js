@@ -58,7 +58,7 @@ export function _static_login(req, res, next, user) {
           return Login.create({
             uid: user._id,
             uname: user.name,
-            login_count: 1,
+            login_count: 1 + lastLogin.login_count,
             today_login: 1,
           }).then(function (lastLogin) {
             _logger.info('create new login log:' + JSON.stringify(lastLogin));
