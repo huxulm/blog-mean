@@ -3,4 +3,4 @@
  */
 'use strict';
 
-angular.module('snoopyApp.about', ['ui.router', 'ngResource']);
+angular.module('snoopyApp.about', ['ui.router', 'ngResource', 'snoopyApp.about.chart']);
