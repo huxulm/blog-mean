@@ -71,6 +71,10 @@
           if (data.hasOwnProperty('$promise')) {
             delete data.$promise;
           }
+          a.pageResult.docs.forEach(function (e, idx) {
+            a.pageResult.docs[idx].create_time = new Date(e.create_time).toLocaleString();
+            a.pageResult.docs[idx].modify_time = new Date(e.modify_time).toLocaleString();
+          });
         }
       };
     }
