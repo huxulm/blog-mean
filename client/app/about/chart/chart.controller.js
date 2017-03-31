@@ -8,6 +8,12 @@
   function LoginChartCtrl($scope, ChartService) {
 
     // this.$injector = ['$scope'];
+    $scope.options = {
+      title: {
+        display: true,
+        text: 'Custom Chart Title'
+      }
+    };
 
     $scope.labels = [];
     $scope.series = ['Total', 'Today'];
