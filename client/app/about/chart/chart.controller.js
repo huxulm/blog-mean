@@ -5,19 +5,40 @@
 
 (function () {
 
-  function LoginChartCtrl($scope) {
+  function LoginChartCtrl($scope, ChartService) {
 
     // this.$injector = ['$scope'];
 
-    $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-    $scope.series = ['Series A', 'Series B'];
+    $scope.labels = [];
+    $scope.series = ['Total', 'Today'];
+
+    $scope.colors = ['#FF5588', '55FF88'];
 
     $scope.data = [
-      [65, 59, 80, 81, 56, 55, 40],
-      [28, 48, 40, 19, 86, 27, 90]
+      [],[]
     ];
 
+    ChartService.getLoginData()
+      .$promise
+      .then(function (loginData) {
+        parseChartData(loginData);
+      }).catch(function (err) {
+      console.log('getLoginData went wrong:' + JSON.stringify(err));
+    });
+
+    function parseChartData(d) {
+      if (d && angular.isArray(d)) {
+        d.forEach(function (e) {
+          $scope.labels.push(e.user.name);
+          $scope.data[0].push(e.login.login_count);
+          $scope.data[1].push(e.login.today_login);
+        });
+      }
+    }
+
   }
+
+
 
   angular.module('snoopyApp.about.chart')
     .controller('LoginChartCtrl', LoginChartCtrl);
