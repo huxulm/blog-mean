@@ -6,6 +6,10 @@ import _ from 'lodash';
 import Login from '../../../monitor/statics/request/login.model';
 import User from '../../user/user.model';
 import Promise from 'bluebird';
+import LOGGER from './config/log';
+// log
+var logger = LOGGER.getLogger('blog-info');
+logger.setLevel('INFO');
 
 export function login(req, res) {
   return Login.aggregate()
@@ -25,9 +29,8 @@ export function login(req, res) {
 
         let retLoginLogs = [];
         return Promise.all($promises).then(function (results) {
-
+          logger.info('login result:', results);
           results.forEach(function (e, idx) {
-            console.log('login result:' + e);
             let ret = {};
             ret.user = {};
             ret.login = {};
