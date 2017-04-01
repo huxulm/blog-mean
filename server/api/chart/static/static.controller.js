@@ -34,8 +34,10 @@ export function login(req, res) {
             let ret = {};
             ret.user = {};
             ret.login = {};
-            ret.user._id = e._id;
-            ret.user.name = e.name;
+            if (e) {
+              ret.user._id = e._id;
+              ret.user.name = e.name;
+            }
             ret.login = loginLogs[idx];
             retLoginLogs.push(ret);
           });
@@ -44,7 +46,7 @@ export function login(req, res) {
           if (err) {
             console.log('promise all err:' + err);
           }
-          // return loginLogs;
+          return null;
         });
 
       } else {
