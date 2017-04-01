@@ -27,11 +27,12 @@ export function login(req, res) {
         return Promise.all($promises).then(function (results) {
 
           results.forEach(function (e, idx) {
+            console.log('login result:' + e);
             let ret = {};
             ret.user = {};
             ret.login = {};
-            ret.user._id = e._doc._id;
-            ret.user.name = e._doc.name;
+            ret.user._id = e._id;
+            ret.user.name = e.name;
             ret.login = loginLogs[idx];
             retLoginLogs.push(ret);
           });
