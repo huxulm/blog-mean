@@ -34,13 +34,6 @@
           </md-card>
         </div>
 
-        <div class="about-info-view" flex-xs flex-gt-xs="50" layout="column">
-          <div class="album-photo-ct">
-            <img class='album-photo'  src="http://ww1.sinaimg.cn/mw690/afe3ed99jw8f7lk35bfbtj20to0tpjtq.jpg" alt="" />
-            <img class='album-photo'  src="https://thumbnail0.baidupcs.com/thumbnail/60ce8e3c128878268989ab567b623252?fid=153548606-250528-1038192263216952&time=1490468400&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-svvg8GMPjG8KLB3fbz11GIzgirQ%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=1951728038759452335&dp-callid=0&size=c710_u400&quality=100" alt="" />
-            <img class='album-photo'  src="http://farm9.staticflickr.com/8465/8113424031_72048dd887.jpg" alt="" />
-          </div>
-        </div>
       </div>
 
     </md-content>
@@ -49,14 +42,64 @@
 
       <div class="col-lg-6 col-sm-12 ng-scope" id="bar-chart">
         <div class="panel panel-default">
-          <div class="panel-heading">Login Static</div>
+          <div class="panel-heading">Login Static <span class="fa fa-refresh" style="float: right" ng-click="refreshLoginData()"></span></div>
           <div class="panel-body">
             <canvas id="bar" class="chart chart-bar"
-                    chart-data="data" chart-labels="labels" chart-colors="colors" chart-options="options" chart-series="series" chart-dataset-override="datasetOverride">
+                    chart-data="data" chart-labels="labels" chart-colors="colors" chart-options="optionsBar" chart-series="series"
+                    chart-dataset-override="datasetOverrideBar">
             </canvas>
           </div>
         </div>
       </div>
+      <div class="col-lg-6 col-sm-12 ng-scope" id="line-chart">
+        <div class="panel panel-default">
+          <div class="panel-heading">Login Static-2</div>
+          <div class="panel-body">
+            <canvas id="line" class="chart chart-line" chart-data="data" chart-options="optionsLine"
+                    chart-labels="labels" chart-series="series"
+                    chart-dataset-override="datasetOverrideLine">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </md-content>
+
+    <md-content class="md-padding" style="padding-top: 20px;" layout="row" ng-controller="LoginChartCtrl">
+
+      <div class="col-lg-6 col-sm-12 ng-scope" id="doughnut-chart">
+        <div class="panel panel-default">
+          <div class="panel-heading">Login Static-3</div>
+          <div class="panel-body">
+            <canvas id="doughnut" class="chart chart-doughnut" chart-data="data"
+                    chart-labels="labels" chart-series="series"
+                    chart-dataset-override="">
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12 ng-scope" id="radar-chart">
+        <div class="panel panel-default">
+          <div class="panel-heading">Login Static-4</div>
+          <div class="panel-body">
+            <canvas id="radar" class="chart chart-radar" chart-options="radarOptions" chart-dataset-override="radarDatasetOverrides"
+                    chart-data="dataRadar" chart-labels="radarLabels">
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-12 ng-scope" id="base-chart">
+        <div class="panel panel-default">
+          <div class="panel-heading">Login Static-5 <span class="fa fa-refresh" style="float: right" ng-click="toggle()"></span></div>
+          <div class="panel-body">
+            <canvas id="base" class="chart-base" chart-type="type"
+                    chart-data="baseData" chart-labels="baseLabels" >
+            </canvas>
+          </div>
+        </div>
+      </div>
+
     </md-content>
 
     <md-content layout="row" class="md-padding" layout-align="center center" class="md-hue-3">
