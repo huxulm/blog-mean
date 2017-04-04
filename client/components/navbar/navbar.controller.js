@@ -18,6 +18,10 @@ class NavbarController {
         title: 'Blog'
       },
       {
+        state: 'main.gallery',
+        title: 'Gallery'
+      },
+      {
         state: 'main.about',
         title: 'About'
       }

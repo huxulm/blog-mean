@@ -1,0 +1,23 @@
+.lg-backdrop.in {
+  opacity: 0.85;
+}
+.fixed-size.lg-outer .lg-inner {
+  background-color: #FFF;
+}
+.fixed-size.lg-outer .lg-sub-html {
+  position: absolute;
+  text-align: left;
+}
+.fixed-size.lg-outer .lg-toolbar {
+  background-color: transparent;
+  height: 0;
+}
+.fixed-size.lg-outer .lg-toolbar .lg-icon {
+  color: #FFF;
+}
+.fixed-size.lg-outer .lg-img-wrap {
+  padding: 12px;
+}
+.lg-img-wrap {
+  background-color: transparent;
+}

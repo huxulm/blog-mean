@@ -74,7 +74,8 @@ module.exports = function(grunt) {
       },
       injectCss: {
         files: ['<%= yeoman.client %>/{app,components}/**/*.css',
-          '<%= yeoman.client %>/bower_components/font-awesome/css/font-awesome.css'
+          '<%= yeoman.client %>/bower_components/font-awesome/css/font-awesome.css',
+          '<%= yeoman.client %>/bower_components/lightgallery.js/dist/css/lg-transitions.min.css'
         ],
         tasks: ['injector:css']
       },
@@ -606,7 +607,8 @@ module.exports = function(grunt) {
         files: {
           '<%= yeoman.client %>/index.html': [
             '<%= yeoman.client %>/{app,components}/**/*.css',
-            '<%= yeoman.client %>/bower_components/font-awesome/css/font-awesome.min.css'
+            '<%= yeoman.client %>/bower_components/font-awesome/css/font-awesome.min.css',
+            '<%= yeoman.client %>/bower_components/lightgallery.js/dist/css/lg-transitions.min.css'
           ]
         }
       }

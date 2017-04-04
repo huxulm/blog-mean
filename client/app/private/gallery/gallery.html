@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="gal-sidebar" id="galSideBar">
+    <ul>
+      <li class="gal-sidebar-brand"><a href="">Gallery</a></li>
+      <li><a href="#">Upload New Image</a></li>
+    </ul>
+    <md-button class="md-button gal-sidebar-sw" style="width: 50px">
+      <span class="fa fa-refresh"></span>
+    </md-button>
+  </div>
+  <div ng-controller="GalleryCtrl as galCtrl" class="md-content gal-content">
+    <md-card-content>
+      <div layout="row">
+        <md-content class="col-xs-6">
+          <md-input-container style="margin-top: 50px">
+            <md-select ng-model="ctrl.userState">
+              <md-option ng-repeat="m in galleryMode" ng-value="m.mode">
+                {{m.desc}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </md-content>
+      </div>
+    </md-card-content>
+    <!--<img-gallery img-urls="['http://baidu.com']"></img-gallery>-->
+
+  </div>
+
+  <div class="gal-album-wrap">
+    <ul class="gal-album-grid">
+      <li class="gal-album-grid-item">
+        <div class="album-item-head">
+          风景
+        </div>
+        <img class="album-item-img" src="https://sachinchoolur.github.io/lightgallery.js/static/img/1.jpg">
+        <div class="album-item-footer">
+          最后更新：2017-04-03 14:00
+        </div>
+      </li>
+      <li class="gal-album-grid-item">
+      </li>
+      <li class="gal-album-grid-item">
+      </li>
+      <li class="gal-album-grid-item">
+      </li>
+    </ul>
+  </div>
+</div>
