@@ -131,12 +131,13 @@ body {
 }
 
 .gal-album-grid-item:nth-child(n) {
-  border: 5px #fbfbff solid;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;;
+  border: 2px #fbfbff solid;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;;
   display: inline-block;
-  margin: 5px;
+  margin: 15px;
+  cursor: pointer;
   /*background-color: grey;*/
   -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform .2s;
   transition: width 2s, height 2s, background-color 2s, transform .2s;
@@ -151,25 +152,20 @@ body {
 .gal-album-grid-item {
   list-style: none;
   display: inline-block;
-  width: 280px;
-  min-height: 240px;
+  width: 240px;
+  min-height: 160px;
   text-align: center;
 }
 .gal-album-grid-item .album-item-head {
   position: absolute;
   width: inherit;
   max-width: 100%;
-  margin: 0 -5px 0 -5px;
+  margin: 0 -2px 0 -2px;
   background: rgba(239, 232, 237, 0.4);
   color: white;
   overflow: hidden;
-  -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform .2s;
-  transition: width 2s, height 2s, background-color 2s, transform 0s;
-}
-.gal-album-grid-item:nth-child(n):hover.gal-album-grid-item .album-item-head {
-  /*-webkit-transform: scale(0.5, 0.5);*/
-  /*transform: scale(0.5, 0.5);*/
-  margin: 0;
+  -webkit-transition: width 2s, height 2s, margin 0s, -webkit-transform .2s;
+  transition: width 2s, height 2s, margin 0s, transform .2s;
 }
 
 .gal-album-grid-item .album-item-img {
@@ -180,12 +176,19 @@ body {
 .gal-album-grid-item .album-item-footer {
   position: absolute;
   width: inherit;
-  margin: 0 -5px 0 -5px;
   max-width: 100%;
+  margin: 0 -2px 0 -2px;
   background: rgba(239, 232, 237, 0.4);
   color: white;
   overflow: hidden;
+  -webkit-transition: width 2s, height 2s, margin 0s, -webkit-transform .2s;
+  transition: width 2s, height 2s, margin 0s, transform .2s;
   transform: translateY(-100%);
+}
+
+.gal-album-grid-item:nth-child(n):hover .album-item-head .album-item-footer {
+  transform: scale(1.02, 1.02);
+  transition: transform 0s;
 }
 
 
