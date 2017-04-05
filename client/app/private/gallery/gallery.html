@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="GalleryCtrl as galCtrl">
   <div class="gal-sidebar" id="galSideBar">
     <ul>
       <li class="gal-sidebar-brand"><a href="">Gallery</a></li>
@@ -8,7 +8,7 @@
       <span class="fa fa-refresh"></span>
     </md-button>
   </div>
-  <div ng-controller="GalleryCtrl as galCtrl" class="md-content gal-content">
+  <div class="md-content gal-content">
     <md-card-content>
       <div layout="row">
         <md-content class="col-xs-6">
@@ -26,9 +26,9 @@
 
   </div>
 
-  <div class="gal-album-wrap">
-    <ul class="gal-album-grid">
-      <li class="gal-album-grid-item">
+  <div class="gal-album-wrap" id="gallery" gallery>
+    <ul class="gal-album-grid" id="gallery_id">
+      <li class="gal-album-grid-item" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/1.jpg">
         <div class="album-item-head">
           风景
         </div>
@@ -37,11 +37,32 @@
           最后更新：2017-04-03 14:00
         </div>
       </li>
-      <li class="gal-album-grid-item">
+      <li class="gal-album-grid-item" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/2.jpg">
+        <div class="album-item-head">
+          万物
+        </div>
+        <img class="album-item-img" src="https://sachinchoolur.github.io/lightgallery.js/static/img/2.jpg">
+        <div class="album-item-footer">
+          最后更新：2017-04-03 14:00
+        </div>
       </li>
-      <li class="gal-album-grid-item">
+      <li class="gal-album-grid-item" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/19.jpg">
+        <div class="album-item-head">
+          宇宙
+        </div>
+        <img class="album-item-img" src="https://sachinchoolur.github.io/lightgallery.js/static/img/19.jpg">
+        <div class="album-item-footer">
+          最后更新：2017-04-03 14:00
+        </div>
       </li>
-      <li class="gal-album-grid-item">
+      <li class="gal-album-grid-item" data-src="https://sachinchoolur.github.io/lightgallery.js/static/img/10.jpg">
+        <div class="album-item-head">
+          自然
+        </div>
+        <img class="album-item-img" src="https://sachinchoolur.github.io/lightgallery.js/static/img/10.jpg">
+        <div class="album-item-footer">
+          最后更新：2017-04-03 14:00
+        </div>
       </li>
     </ul>
   </div>
