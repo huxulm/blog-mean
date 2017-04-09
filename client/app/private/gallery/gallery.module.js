@@ -3,4 +3,4 @@
  */
 'use strict';
 
-angular.module('snoopyApp.blog.private.gallery', ['ui.router']);
+angular.module('snoopyApp.blog.private.gallery', ['ui.router', 'angularFileUpload']);

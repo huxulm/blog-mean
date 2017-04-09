@@ -1,0 +1,46 @@
+<div class="gal-up-wrap" nv-file-drop="" uploader="uploader">
+  <h2>图片上传/预览</h2>
+  <p class="lead">支持<span class="label label-info">拖拽</span> 和 <span class="label label-info">选择</span></p>
+
+  <!-- Upload  -->
+  <form id="file-upload-form" class="gal-up"  nv-file-over="" uploader="uploader">
+    <input id="file-upload" type="file" name="fileUpload" accept="image/*" nv-file-select="" uploader="uploader" multiple/>
+
+    <label for="file-upload" id="file-drag">
+      <img id="file-image" src="#" alt="Preview" class="hidden">
+      <div id="start">
+        <i class="fa fa-download" aria-hidden="true"></i>
+        <div>拖拽/选择</div>
+        <div id="notimage" class="hidden">Please select an image</div>
+        <span id="file-upload-btn" class="btn btn-primary">选择一张图片</span>
+      </div>
+      <div id="response" class="hidden">
+        <div id="messages"></div>
+        <progress class="progress" id="file-progress" value="0">
+          <span>0</span>%
+        </progress>
+      </div>
+    </label>
+  </form>
+
+</div>
+<!-- 预览区域 -->
+<div class="img-pre-wr" style="margin-bottom: 40px">
+  <p class="img-pre-title lead">待上传图片数: {{uploader.queue.length}}</p>
+  <ul>
+    <li ng-repeat="item in uploader.queue">
+      <div class="img-pre-cancel" ng-click="item.remove()"><span class="fa fa-close"></span></div>
+      <!--<span>{{ item.file.name }}</span>-->
+      <div ng-thumb="{ file: item.file, width: 100 }" style="position: absolute"></div>
+      <div img-preview="{ file: item._file, height: 100 }"></div>
+      <div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>
+    </li>
+  </ul>
+</div>
+<md-progress-linear md-mode="determinate" value="{{uploader.progress}}" ng-show="uploader.getNotUploadedItems().length > 0"></md-progress-linear>
+<md-dialog-actions>
+  <md-button class="md-raised" type="button" style="float: right;margin-right: 5px;" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+    <span class="glyphicon glyphicon-upload"></span>上传
+  </md-button>
+</md-dialog-actions>
+

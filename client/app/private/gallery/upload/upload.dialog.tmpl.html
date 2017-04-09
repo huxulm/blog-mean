@@ -1,0 +1,16 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <md-toolbar>
+    <div class="md-toolbar-tools md-subhead">
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="closeUploadDialog()">
+        <md-icon md-svg-src="assets/icons/close.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <upload-album></upload-album>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="closeUploadDialog()" class="md-primary">取消</md-button>
+  </md-dialog-actions>
+</md-dialog>
