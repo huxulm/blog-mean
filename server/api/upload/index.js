@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+import * as auth from '../../auth/auth.service';
 var controller = require('./upload.controller');
 var env = require('../../config/environment');
 var router = express.Router();
@@ -20,6 +21,6 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage })
 
-router.post('/', upload.any(),controller.upload);
+router.post('/', auth.isAuthenticated(), upload.any(),controller.upload);
 
 module.exports = router;
