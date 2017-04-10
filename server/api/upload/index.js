@@ -19,8 +19,8 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage: storage })
+var upload = multer({ storage: storage });
 
-router.post('/', auth.isAuthenticated(), upload.any(),controller.upload);
+router.post('/', auth.isAuthenticated(), upload.any(),controller.upload());
 
 module.exports = router;
