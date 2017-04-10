@@ -23,11 +23,11 @@
         }, function() {
           $scope.status = 'You cancelled the dialog.';
         });
-    }
+    };
 
     this.cb = function (fileItem, response, status, headers) {
       // upload callback
-    }
+    };
   }
 
   function DialogCtrl(ctx) {
@@ -41,7 +41,8 @@
       var uploader = $scope.uploader = new FileUploader({
         url: '/api/upload',
         headers: {
-          'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN') || ''
+          'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN') || '',
+          'Authorization': 'Bearer ' + ($cookies.get('token') || '')
         }
       });
 
@@ -78,8 +79,14 @@
         if (ctx.cb) {
           ctx.cb(fileItem, response, status, headers);
         }
+
+        // close dialog in 2000 ms
+        setTimeout($scope.closeUploadDialog, 2000);
       };
       uploader.onErrorItem = function(fileItem, response, status, headers) {
+        if (status === 401) {
+          swal('未登录,图片上传失败.')
+        }
         console.info('onErrorItem', fileItem, response, status, headers);
         if (ctx.cb) {
           ctx.cb(fileItem, response, status, headers);
@@ -101,6 +108,10 @@
       $scope.closeUploadDialog = function () {
         $mdDialog.cancel();
       };
+
+      $scope.uploadAll = function () {
+        uploader.uploadAll();
+      }
 
     };
     _dialogCtrl.$inject = ['$scope', '$mdDialog', '$cookies', 'FileUploader'];
