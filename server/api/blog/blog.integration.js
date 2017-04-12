@@ -4,7 +4,7 @@ var app = require('../..');
 import request from 'supertest';
 import _ from 'lodash';
 import User from '../user/user.model';
-var newBlog;
+var newBlog = {};
 
 describe('Blog API:', function() {
   var user;
@@ -70,7 +70,7 @@ describe('Blog API:', function() {
     var blog;
 
     request(app)
-      .get('/api/blogs/' + newBlog._id)
+      .get('/api/blogs/' + newBlog._id || '')
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
@@ -122,7 +122,7 @@ describe('Blog API:', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/blogs/' + newBlog._id)
+        .delete('/api/blogs/' + newBlog._id || '')
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -134,7 +134,7 @@ describe('Blog API:', function() {
 
     it('should respond with 404 when blog does not exist', function(done) {
       request(app)
-        .delete('/api/blogs/' + newBlog._id)
+        .delete('/api/blogs/' + newBlog._id || '')
         .expect(404)
         .end((err, res) => {
           if (err) {
