@@ -16,5 +16,12 @@ module.exports = {
         timestamps: false
       }
     }
-  }
+  },
+
+  mutler: {
+    dest: '/Users/xulingming/data/blog_uploads/imgs',
+    dir: '/Users/xulingming/data/blog_uploads'
+  },
+
+  logDir: '/Users/xulingming/Public/logs/blog'
 };
