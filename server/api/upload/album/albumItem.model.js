@@ -4,6 +4,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate';
 
 /**
  * 相册目录SCHEMA
@@ -19,5 +20,5 @@ var AlbumItemSchema = new mongoose.Schema({
   modify_time: Date,
   is_delete: {type: String, default: 'N'}
 });
-
+AlbumItemSchema.plugin(mongoosePaginate);
 export default mongoose.model('AlbumItem', AlbumItemSchema);
