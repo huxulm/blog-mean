@@ -16,6 +16,7 @@ export default function(app) {
   app.use('/api/users', require('./api/user'));
   app.use('/api/comments', require('./api/comment'));
   app.use('/api/upload', require('./api/upload'));
+  app.use('/api/upload/albums', require('./api/upload/album'));
   app.use('/api/static/login', require('./api/chart/static'));
   app.use('/auth', require('./auth').default);
 
