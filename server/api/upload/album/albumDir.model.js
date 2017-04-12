@@ -4,7 +4,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import mongoosepaginate from 'mongoose-paginate';
+import mongoosePaginate from 'mongoose-paginate';
 /**
  * 相册目录SCHEMA
  */
@@ -18,5 +18,5 @@ var AlbumDirSchema = new mongoose.Schema({
   modify_time: Date,
   is_delete: {type: String, default: 'N'}
 });
-AlbumDirSchema.plugin(mongoosepaginate);
+AlbumDirSchema.plugin(mongoosePaginate);
 export default mongoose.model('AlbumDir', AlbumDirSchema);

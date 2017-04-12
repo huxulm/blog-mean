@@ -10,6 +10,8 @@ import * as auth from '../../../auth/auth.service';
 var router = new Router();
 
 router.get('/', controller.index);
+router.get('/page', auth.isAuthenticated(), controller.page);
+router.get('/:id', controller.show);
 router.post('/', auth.isAuthenticated(), controller.createAlbumDir);
 
 module.exports = router;

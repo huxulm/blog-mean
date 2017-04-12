@@ -32,8 +32,42 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
+export function page(req, res) {
+  let qp = req.query;
+  if (_.isEmpty(qp.type)) {
+    return res.status(200).json(errorParams(-1, '参数type为空'));
+  } else if (isNaN(qp.type) || !(/[0|1]/.test(qp.type))) {
+    return res.status(200).json(errorParams(-1, '参数type必须为0或1'));
+  }
+  if (!qp) {
+    return res.status(200).json(errorParams(-1));
+  }
+  if (!qp.page || isNaN(qp.page)) {
+    qp.page = 1;  // first page = 1
+  } else {
+    qp.page = _.toNumber(qp.page);
+  }
+  if (!qp.limit || _.isNaN(qp.limit)) {
+    qp.limit = 10;
+  } else {
+    qp.limit = _.toNumber(qp.limit);
+  }
+  return AlbumDir.paginate({
+      // query
+    },
+    // options
+    qp)
+    .then(function (result) {
+      return res.status(200).json(result || {});
+    }).catch(function (err) {
+      return res.status(200).json(errorParams(-2, err.toString()));
+    });
+
+}
+
 // Gets a specific item of albums
 export function show(req, res) {
+  console.log('GET query:', req.query);
   if (_.isEmpty(req.query.type)) {
     return res.status(200).json(errorParams(-1, '参数type为空'));
   }

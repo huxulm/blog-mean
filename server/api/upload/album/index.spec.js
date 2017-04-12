@@ -4,6 +4,7 @@ var proxyquire = require('proxyquire').noPreserveCache();
 
 var albumCtrlStub = {
   index: 'albumCtrl.index',
+  show: 'albumCtrl.show',
   createAlbumDir: 'albumCtrl.createAlbumDir'
 };
 
@@ -41,7 +42,7 @@ describe('album API Router:', function() {
 
   });
 
-  describe('GET /api/albums/:id', function() {
+  describe('GET /api/upload/albums/:id', function() {
 
     it('should route to album.controller.show', function() {
       routerStub.get
@@ -51,51 +52,11 @@ describe('album API Router:', function() {
 
   });
 
-  describe('GET /api/albums/page', function() {
+  describe('POST /api/upload/albums', function() {
 
-    it('should route to album.controller.page', function() {
-      routerStub.get
-        .withArgs('/page', 'albumCtrl.page')
-        .should.have.been.calledOnce;
-    });
-
-  });
-
-  describe('POST /api/albums', function() {
-
-    it('should route to album.controller.create', function() {
+    it('should route to album.controller.createAlbumDir', function() {
       routerStub.post
-        .withArgs('/', 'albumCtrl.create')
-        .should.have.been.calledOnce;
-    });
-
-  });
-
-  describe('PUT /api/albums/:id', function() {
-
-    it('should route to album.controller.update', function() {
-      routerStub.put
-        .withArgs('/:id', 'albumCtrl.update')
-        .should.have.been.calledOnce;
-    });
-
-  });
-
-  describe('PATCH /api/albums/:id', function() {
-
-    it('should route to album.controller.update', function() {
-      routerStub.patch
-        .withArgs('/:id', 'albumCtrl.update')
-        .should.have.been.calledOnce;
-    });
-
-  });
-
-  describe('DELETE /api/albums/:id', function() {
-
-    it('should route to album.controller.destroy', function() {
-      routerStub.delete
-        .withArgs('/:id', 'albumCtrl.destroy')
+        .withArgs('/', 'albumCtrl.createAlbumDir')
         .should.have.been.calledOnce;
     });
 
