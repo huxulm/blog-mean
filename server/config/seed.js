@@ -62,7 +62,7 @@ User.find({}).remove()
   .then(() => {
     User.create({
       provider: 'local',
-      name: 'Test User',
+      name: 'jackdon',
       email: 'jackdon@gmail.com',
       password: 'xlmxlm00a'
     }, {
@@ -71,6 +71,12 @@ User.find({}).remove()
       name: 'Admin',
       email: 'admin@example.com',
       password: 'admin'
+    }, {
+      provider: 'local',
+      role: 'test',
+      name: 'test',
+      email: 'test@example.com',
+      password: 'test'
     })
     .then(() => {
       console.log('finished populating users');
