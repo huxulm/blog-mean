@@ -3,27 +3,38 @@
 var app = require('../..');
 import request from 'supertest';
 import _ from 'lodash';
-
+import User from '../user/user.model';
 var newBlog;
 
 describe('Blog API:', function() {
+  var user;
+  var token;
+
+  before(function () {
+    return User.remove().then(function () {
+      user = new User({
+        name: 'test',
+        email: 'test@example.com',
+        password: 'password'
+      });
+      return user.save();
+    });
+  });
 
   describe('GET /api/blogs', function() {
     var blogs;
 
-    beforeEach(function(done) {
-      request(app)
-        .get('/api/blogs')
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
-          blogs = res.body;
-          done();
-        });
-    });
+    request(app)
+      .get('/api/blogs')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        blogs = res.body;
+        done();
+      });
 
     it('should respond with JSON array', function() {
       blogs.should.be.instanceOf(Array);
@@ -32,23 +43,21 @@ describe('Blog API:', function() {
   });
 
   describe('POST /api/blogs', function() {
-    beforeEach(function(done) {
-      request(app)
-        .post('/api/blogs')
-        .send({
-          title: 'New Blog',
-          text_content: 'This is the brand new blog!!!'
-        })
-        .expect(201)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
-          newBlog = res.body;
-          done();
-        });
-    });
+    request(app)
+      .post('/api/blogs')
+      .send({
+        title: 'New Blog',
+        text_content: 'This is the brand new blog!!!'
+      })
+      .expect(201)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        newBlog = res.body;
+        done();
+      });
 
     it('should respond with the newly created blog', function() {
       newBlog.title.should.equal('New Blog');
@@ -60,23 +69,17 @@ describe('Blog API:', function() {
   describe('GET /api/blogs/:id', function() {
     var blog;
 
-    beforeEach(function(done) {
-      request(app)
-        .get('/api/blogs/' + newBlog._id)
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) {
-            return done(err);
-          }
-          blog = res.body;
-          done();
-        });
-    });
-
-    afterEach(function() {
-      blog = {};
-    });
+    request(app)
+      .get('/api/blogs/' + newBlog._id)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        blog = res.body;
+        done();
+      });
 
     it('should respond with the requested blog', function() {
       blog.title.should.equal('New Blog');
@@ -88,25 +91,23 @@ describe('Blog API:', function() {
   describe('PUT /api/blogs/:id', function() {
     var updatedBlog;
 
-    beforeEach(function(done) {
-      request(app)
-        .put('/api/blogs/' + newBlog._id)
-        .send({
-          title: 'Updated Blog',
-          text_content: 'This is the updated blog!!!'
-        })
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
-          updatedBlog = res.body;
-          done();
-        });
-    });
+    request(app)
+      .put('/api/blogs/' + newBlog._id)
+      .send({
+        title: 'Updated Blog',
+        text_content: 'This is the updated blog!!!'
+      })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function(err, res) {
+        if (err) {
+          return done(err);
+        }
+        updatedBlog = res.body;
+        done();
+      });
 
-    afterEach(function() {
+    after(function() {
       updatedBlog = {};
     });
 
@@ -143,6 +144,20 @@ describe('Blog API:', function() {
         });
     });
 
+  });
+
+  beforeEach(function (done) {
+    request(app)
+      .post('/auth/local')
+      .send({
+        email: user.email,
+        password: 'password'
+      })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        token = res.body.token;
+      });
   });
 
 });
