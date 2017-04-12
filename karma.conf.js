@@ -18,14 +18,13 @@ module.exports = function(config) {
       'client/bower_components/angular-cookies/angular-cookies.js',
       'client/bower_components/angular-sanitize/angular-sanitize.js',
       'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-      'client/bower_components/lodash/dist/lodash.compat.js',
+      'client/bower_components/lodash/lodash.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-validation-match/dist/angular-validation-match.min.js',
       'client/bower_components/angular-animate/angular-animate.js',
       'client/bower_components/angular-aria/angular-aria.js',
       'client/bower_components/angular-messages/angular-messages.js',
       'client/bower_components/angular-material/angular-material.js',
-      'client/bower_components/Font-Awesome-SVG-PNG/Font-Awesome-SVG-PNG.js',
       'client/bower_components/angular-highlightjs/build/angular-highlightjs.js',
       'client/bower_components/marked/lib/marked.js',
       'client/bower_components/angular-marked/dist/angular-marked.js',
@@ -35,6 +34,9 @@ module.exports = function(config) {
       'client/bower_components/code-prettify/src/prettify.js',
       'client/bower_components/angular-upload/angular-upload.js',
       'client/bower_components/angular-file-upload/dist/angular-file-upload.min.js',
+      'client/bower_components/chart.js/dist/Chart.js',
+      'client/bower_components/angular-chart.js/dist/angular-chart.js',
+      'client/bower_components/lightgallery.js/dist/js/lightgallery.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',
@@ -68,7 +70,7 @@ module.exports = function(config) {
     exclude: [],
 
     // web server port
-    port: 8080,
+    port: 9000,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
@@ -94,7 +96,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome', 'Firefox', 'Opera', 'Safari'],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
