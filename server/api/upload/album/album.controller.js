@@ -7,6 +7,7 @@ import _ from 'lodash';
 import AlbumDir from './albumDir.model';
 import AlbumItem from './albumItem.model';
 import CONSTS from '../../../config/app_constants';
+import queryString from 'query-string';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -34,6 +35,16 @@ export function index(req, res) {
 
 export function page(req, res) {
   let qp = req.query;
+  console.log('query string before decode:' + JSON.stringify(qp));
+  if (qp.s) {
+    try {
+      qp.$s = JSON.parse(qp.s);
+    } catch (e) {
+      qp.$s = {};
+    } finally {
+      console.log('qp.$s:' + JSON.stringify(qp.$s));
+    }
+  }
   if (_.isEmpty(qp.type)) {
     return res.status(200).json(errorParams(-1, '参数type为空'));
   } else if (isNaN(qp.type) || !(/[0|1]/.test(qp.type))) {
@@ -52,9 +63,9 @@ export function page(req, res) {
   } else {
     qp.limit = _.toNumber(qp.limit);
   }
-  return AlbumDir.paginate({
-      // query
-    },
+  return (/[0]/.test(qp.type) ? AlbumDir : AlbumItem).paginate(
+    // query
+    qp.$s,
     // options
     qp)
     .then(function (result) {

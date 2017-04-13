@@ -12,14 +12,46 @@ describe('Album API:', function() {
   var nwAlbumDir;
 
   before(function () {
-    return User.remove().then(function () {
+    let rs = Promise.all([User.remove(), AlbumDir.remove()]).then(function () {
       user = new User({
         name: 'Test',
         email: 'test@example.com',
         password: 'password'
       });
-      return user.save();
+
+      let promises = {
+        user: user.save()
+      };
+
+      return promises.user.then(function (user) {
+        let albumDirPromises = [
+          new AlbumDir({
+            name: 'Album NO.1',
+            uid: user._id
+          }).save(),
+          new AlbumDir({
+            name: 'Album NO.2',
+            uid: user._id
+          }).save()
+        ];
+
+        return Promise.all(albumDirPromises).then(function (data) {
+          let result = {
+            user: user,
+            albums: data
+          };
+          console.log('Finaly result: ', JSON.stringify(result));
+          return result;
+        }).catch(function (err) {
+          console.log('ERROR 2:', err);
+        });
+      }).catch(function (err) {
+        console.log('ERROR 1:', err);
+      });
+
     });
+
+    console.log('Finaly result: ', JSON.stringify(rs));
   });
 
   describe('POST /api/upload/albums', function() {
@@ -119,7 +151,7 @@ describe('Album API:', function() {
 
     it('should respond with a album page result', function(done) {
       request(app)
-        .get('/api/upload/albums/page?type=0&page=1&limit=5')
+        .get('/api/upload/albums/page?type=1&page=1&limit=5&s=' + encodeURI('{\"name\": \"Nature pic 1\"}'))
         .set('authorization', 'Bearer ' + token)
         .expect(200)
         .expect('Content-Type', /json/)
