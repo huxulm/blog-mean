@@ -38,6 +38,6 @@ module.exports = {
   logDir: '/Users/xulingming/Public/logs/blog',
 
   // Seed database on startup
-  seedDB: false
+  seedDB: true
 
 };
