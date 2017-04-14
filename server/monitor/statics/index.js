@@ -80,7 +80,7 @@ export function _static_login(req, res, next, user) {
           uname: user.name,
           login_count: 1,
           today_login: 1,
-        }).exec().then(function (lastLogin) {
+        }).then(function (lastLogin) {
           return lastLogin;
         }).catch(function (err) {
           console.log(err ? err : 'create error');

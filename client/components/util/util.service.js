@@ -51,6 +51,14 @@
           return url.hostname === o.hostname && url.port === o.port && url.protocol === o.protocol;
         });
         return origins.length >= 1;
+      },
+      
+      covert2SelectionData(origin, opts) {
+        if (origin && _.isArray(origin)) {
+          return origin.map(function (e) {
+            return {property: opts.key || (e.hasOwnProperty('property') ? e['property'] : ''), value: e[opts.value]|| e.value};
+          });
+        }
       }
     };
 

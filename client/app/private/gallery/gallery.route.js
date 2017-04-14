@@ -10,5 +10,8 @@ angular.module('snoopyApp.blog.private.gallery')
       templateUrl: 'app/private/gallery/gallery.html',
       controller: 'GalleryCtrl',
       controllerAs: 'galCtrl'
+    }).state('main.gallery.album', {
+      url: '/:aid?uid&',
+      template: '<img-gallery></img-gallery>'
     });
   });

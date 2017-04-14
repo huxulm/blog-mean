@@ -3,11 +3,15 @@
  */
 'use strict';
 (function () {
-  function GalleryCtrl($scope, $mdDialog, FileUploader) {
-    this.$inject = ['$scope', '$mdDialog'];
+  function GalleryCtrl($scope, $mdDialog, AlbumService, Util, FileUploader) {
+    this.$inject = ['$scope', '$mdDialog', Util];
     console.log('GalleryCtrl inject:', arguments);
 
     $scope.galleryMode = [{mode: 0, desc: 'WATER'}, {mode: 1, desc: 'GALLERY'}];
+
+    this.$onInit = function () {
+      console.log('on init...');
+    };
 
     // 上传图片
     this.uploadImg = function (ev) {
@@ -28,6 +32,45 @@
     this.cb = function (fileItem, response, status, headers) {
       // upload callback
     };
+
+    // 加载相册
+    this.loadAlbums = $scope.loadAlbums = function (cb) {
+      // TODO
+      AlbumService.getAlbumDirs({page: 1, limit: 10}).$promise.then(function (rs) {
+        console.log('Load album dirs:', rs || {});
+        albumsLoadedCb(rs.docs || []);
+
+        if(cb && angular.isFunction(cb)) {
+          cb();
+        }
+      });
+    };
+
+
+    var galOpts = {width: '700px', height: '470px', mode: 'lg-lollipop', addClass: 'fixed-size', counter: false, download: false, startClass: '', enableSwipe: false, enableDrag: false, speed: 500};
+
+    var albumsLoadedCb = function (data) {
+      $scope.albums = data;
+      $scope.albums.map(function (e) {
+        e.create_time = new Date(e.create_time).toLocaleString();
+        e.last_upload_time = new Date(e.last_upload_time).toLocaleString();
+        return e;
+      });
+
+      /*setTimeout(function () {
+        lightGallery(document.getElementById('gallery_id'), galOpts);
+      }, 2000);*/
+    };
+
+    $scope.createAlbum = function (album) {
+      if (!album) {
+        swal('相册名称不可为空！');
+      }
+    }
+
+    this.$onChanges = function (changeObj) {
+      console.log('On change:' + JSON.toString(changeObj));
+    }
   }
 
   function DialogCtrl(ctx) {
@@ -37,6 +80,8 @@
       this.$scope = $scope;
       this.$cookies = $cookies;
       this.$mdDialog = $mdDialog;
+      this.$scope.nwAlbum = {};
+      this.$scope.field = 'field text';
 
       var uploader = $scope.uploader = new FileUploader({
         url: '/api/upload',
@@ -67,6 +112,8 @@
       };
       uploader.onBeforeUploadItem = function(item) {
         console.info('onBeforeUploadItem', item);
+        item.formData['type'] = 0;
+        item.formData['album_id'] = 'K9977EDs01';
       };
       uploader.onProgressItem = function(fileItem, progress) {
         console.info('onProgressItem', fileItem, progress);

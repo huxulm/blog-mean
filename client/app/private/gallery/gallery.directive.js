@@ -17,7 +17,6 @@
         return {
           pre: function preLink(scope, iElement, iAttrs, galCtrl) {
             console.log('Attrs:', iElement, iAttrs, galCtrl);
-            galCtrl.loadAlbums();
           },
           post: function postLink(scope, iElement, iAttrs, galCtrl) {
             console.log('Attrs:', iElement, iAttrs, galCtrl);

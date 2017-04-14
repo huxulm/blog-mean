@@ -7,4 +7,11 @@ angular.module('snoopyApp', ['snoopyApp.auth', 'snoopyApp.admin', 'snoopyApp.hom
     $urlRouterProvider.otherwise('/');
 
     $locationProvider.html5Mode(true);
-  });
+  })
+  .config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+      // Allow same origin resource loads.
+      'self',
+      // Allow loading from our assets domain. **.
+      'https://sachinchoolur.github.io/lightgallery.js/static/img/**'
+    ])});

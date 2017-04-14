@@ -2,6 +2,19 @@
   <h2>图片上传/预览</h2>
   <p class="lead">支持<span class="label label-info">拖拽</span> 和 <span class="label label-info">选择</span></p>
 
+  <div class="row" name="myForm">
+    <label>
+      Enter text:
+      <input type="email" ng-model="field" name="myField" required maxlength="15" />
+    </label>
+    <div ng-messages="myForm.myField.$error" role="alert">
+      <div ng-message="required">Please enter a value for this field.</div>
+      <div ng-message="email">This field must be a valid email address.</div>
+      <div ng-message="maxlength">This field can be at most 15 characters long.</div>
+    </div>
+    <md-button class="md-raised" ng-click="createAlbum()"></md-button>
+  </div>
+
   <!-- Upload  -->
   <form id="file-upload-form" class="gal-up"  nv-file-over="" uploader="uploader">
     <input id="file-upload" type="file" name="fileUpload" accept="image/*" nv-file-select="" uploader="uploader" multiple/>
@@ -39,7 +52,7 @@
 </div>
 <md-progress-linear md-mode="determinate" value="{{uploader.progress}}" ng-show="uploader.getNotUploadedItems().length > 0"></md-progress-linear>
 <md-dialog-actions>
-  <md-button class="md-raised" type="button" style="float: right;margin-right: 5px;" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+  <md-button class="md-raised" type="button" style="float: right;margin-right: 5px;" ng-click="uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
     <span class="glyphicon glyphicon-upload"></span>上传
   </md-button>
 </md-dialog-actions>

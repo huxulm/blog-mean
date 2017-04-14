@@ -1,10 +1,13 @@
-<div>
-  <div id="fixed-size">
-    <a href="https://sachinchoolur.github.io/lightgallery.js/static/img/1.jpg">
-      <img src="https://sachinchoolur.github.io/lightgallery.js/static/img/1.jpg" />
-    </a>
-    <a href="https://sachinchoolur.github.io/lightgallery.js/static/img/2.jpg">
-      <img src="https://sachinchoolur.github.io/lightgallery.js/static/img/2.jpg" />
-    </a>
-  </div>
+<div class="gal-album-wrap" id="gallery" gallery>
+  <div>GALLERY --- {{directiveId}}</div>
+  <ul class="gal-album-grid" id="gallery_id_0">
+    <li id="{{item._id}}" ng-repeat="item in items" class="gal-album-grid-item" data-src="{{item.url}}">
+      <div>
+        <div class="album-item-head">
+          {{item.name}}
+        </div>
+        <img class="album-item-img" src="{{item.url}}">
+      </div>
+    </li>　
+  </ul>
 </div>

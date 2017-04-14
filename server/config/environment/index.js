@@ -24,7 +24,7 @@ var all = {
   // Server IP
   ip: process.env.IP || '0.0.0.0',
 
-  baseUrl: 'http://' + (process.env.DOMAIN || process.env.IP || 'localhost') +':9000',
+  baseUrl: 'http://' + (process.env.DOMAIN || (process.env.IP || 'localhost' + ':9000')),
 
   // Should we populate the DB with sample data?
   seedDB: false,
