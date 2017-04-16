@@ -20,13 +20,22 @@
       // require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],
       multiElement: false,
       compile: function compile(tElement, tAttrs, transclude) {
-        return {
-          pre: function preLink(scope, iElement, iAttrs, controller) {
-            console.log('Attrs:', iElement, iAttrs, controller);
-          },
-          post: function postLink(scope, iElement, iAttrs, controller) {
-            console.log('Attrs:', iElement, iAttrs, controller);
-          }
+        return function postLink(scope, iElement, iAttrs, controller) {
+          console.log('Attrs:', iElement, iAttrs, controller);
+
+          // scroll animation
+          angular.element('.gal-album-grid').on('scroll load', function(){
+            angular.element('.gal-album-grid > *').each( function(i){
+              var bottom_of_object = angular.element(this).offset().top + angular.element(this).outerHeight()/8;
+              var bottom_of_window = angular.element('.gal-album-grid').scrollTop() + $('gal-album-grid').height();
+              if( bottom_of_window > bottom_of_object ){
+                angular.element(this).css({'opacity':'1', 'transform': 'translateY(' + 0 + 'em)'});
+              } else {
+                angular.element(this).css({'opacity':'0', 'transform': 'translateY(' + 2 + 'em)'});
+              }
+            });
+          });
+
         };
       }
 
@@ -50,6 +59,7 @@
     this.loadItems = function () {
       AlbumService.getAlbumItems({
         type: 1,
+        limit: 50,
         s: {a_id: $stateParams.aid}
       }).$promise.then(this.loadItemsCb())
         .catch(function (err) {
@@ -57,7 +67,15 @@
         });
     };
 
-    var galOpts = {width: '700px', height: '470px', mode: 'lg-lollipop', addClass: 'fixed-size', counter: false, download: false, startClass: '', enableSwipe: false, enableDrag: false, speed: 500};
+
+    this.scorllloadMore = function () {
+
+    };
+
+    var galOpts = {/*mode: 'lg-lollipop', addClass: 'fixed-size', counter: false,
+      download: false, startClass: '', enableSwipe: false, enableDrag: false, speed: 500,*/
+      thumbnail:true,
+      animateThumb: true};
 
     this.loadItemsCb = function () {
       return function (data) {

@@ -101,17 +101,16 @@ Promise.all([AlbumDir.remove(), AlbumItem.remove()])
           var promises = [];
           rs.albums.forEach(function (album) {
             if (!album) return;
+            let albumItems = [];
+            for (var i = 0; i < 50; i++) {
+              albumItems.push(new AlbumItem({
+                name: album.name + '- ITEM - ' + i,
+                url: 'https://sachinchoolur.github.io/lightgallery.js/static/img/1.jpg',
+                a_id: album._id
+              }).save());
+            }
             console.log('Single album:', album);
-            promises.push(new AlbumItem({
-              name: album.name + '- ITEM - 2',
-              url: 'https://sachinchoolur.github.io/lightgallery.js/static/img/1.jpg',
-              a_id: album._id
-            }).save());
-            promises.push(new AlbumItem({
-              name: album.name + '- ITEM - 1',
-              a_id: album._id,
-              url: 'https://sachinchoolur.github.io/lightgallery.js/static/img/2.jpg'
-            }).save());
+            promises.push(albumItems);
           });
 
           return Promise.all(promises).then(function (data) {
