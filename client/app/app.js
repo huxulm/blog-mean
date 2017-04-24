@@ -4,7 +4,10 @@ angular.module('snoopyApp', ['snoopyApp.auth', 'snoopyApp.admin', 'snoopyApp.hom
     'snoopyApp.constants', 'ngCookies', 'ngResource', 'ngMessages', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'validation.match', 'ngMaterial', 'oitozero.ngSweetAlert'
   ])
   .config(function($urlRouterProvider, $locationProvider) {
-    $urlRouterProvider.otherwise('/');
+
+    // direct to real home page
+    $urlRouterProvider.when('/', '/home');
+    $urlRouterProvider.otherwise('/home');
 
     $locationProvider.html5Mode(true);
   })
