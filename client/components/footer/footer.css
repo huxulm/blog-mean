@@ -4,3 +4,19 @@ footer.footer {
   margin-top: 70px;
   border-top: 1px solid #E5E5E5;
 }
+
+footer.footer .recordcode {
+  padding-top: 6px;
+  height: 16px;
+  line-height: 16px;
+}
+
+footer.footer .recordcode a i {
+  display: inline-block;
+  width: 14px;
+  height: 16px;
+  margin-right: 6px;
+  background: url(../../assets/images/icon-police.png) 0 0 no-repeat;
+  vertical-align: middle;
+  margin-top: -4px;
+}
