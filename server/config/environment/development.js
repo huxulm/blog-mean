@@ -38,6 +38,13 @@ module.exports = {
   logDir: '/Users/xulingming/Public/logs/blog',
 
   // Seed database on startup
-  seedDB: true
+  seedDB: true,
+
+  seedInfo: {
+    initUser: true,
+    initAlbum: true,
+    initTag: true,
+    initCategory: true
+  }
 
 };
