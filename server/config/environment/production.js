@@ -51,5 +51,12 @@ module.exports = {
   logDir: process.env.BLOG_LOG || '/home/logs',
 
   // Seed database on startup
-  seedDB: false
+  seedDB: true,
+  
+  seedInfo: {
+    initUser: false,
+    initAlbum: true,
+    initTag: false,
+    initCategory: false
+  }
 };
