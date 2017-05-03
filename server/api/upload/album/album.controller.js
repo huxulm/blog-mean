@@ -100,13 +100,19 @@ export function createAlbumDir(req, res) {
   if (!req.body) {
     return res.status(200).json(errorParams(-1));
   }
-  return AlbumDir.create(req.nwAlubmDirs || req.body)
+  console.log('create album body:' + JSON.stringify(req.body || {}));
+  let nwAlbum = _.merge({uid: req.user._id}, req.body);
+  console.log('nw album:' + JSON.stringify(nwAlbum));
+  return AlbumDir.create(nwAlbum)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
 export function createAlbumItem(req, res) {
-  return AlbumItem.create(req.nwAlubmItems || req.body)
+  if (!req.body) {
+    return res.status(200).json(errorParams(-1));
+  }
+  return AlbumItem.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }

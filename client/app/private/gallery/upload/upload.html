@@ -2,17 +2,14 @@
   <h2>图片上传/预览</h2>
   <p class="lead">支持<span class="label label-info">拖拽</span> 和 <span class="label label-info">选择</span></p>
 
-  <div class="row" name="myForm">
+  <div class="row">
     <label>
-      Enter text:
-      <input type="email" ng-model="field" name="myField" required maxlength="15" />
+      相册:
+      <md-select placeholder="Assign to user" ng-model="albumName" md-on-open="loadAlbums()" style="min-width: 200px;">
+        <md-option ng-value="album" ng-repeat="album in albums">{{album.name}}</md-option>
+      </md-select>
     </label>
-    <div ng-messages="myForm.myField.$error" role="alert">
-      <div ng-message="required">Please enter a value for this field.</div>
-      <div ng-message="email">This field must be a valid email address.</div>
-      <div ng-message="maxlength">This field can be at most 15 characters long.</div>
-    </div>
-    <md-button class="md-raised" ng-click="createAlbum()"></md-button>
+    <md-button class="md-raised" ng-click="createAlbum()"><span class="fa fa-plus">Add New</span></md-button>
   </div>
 
   <!-- Upload  -->

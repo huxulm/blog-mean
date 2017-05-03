@@ -5,7 +5,7 @@
 (function () {
 
   function AlbumService($resource) {
-    return $resource('/api/upload/albums/:id', 
+    return $resource('/api/upload/albums/:id',
       {
         id: '@_id'
       },
@@ -29,6 +29,10 @@
             id: 'page',
             type: 1
           }
+        },
+        createAlbum: {
+          method: 'POST',
+          isArray: false
         }
       }
     );

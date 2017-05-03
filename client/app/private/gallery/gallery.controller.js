@@ -11,6 +11,7 @@
 
     this.$onInit = function () {
       console.log('on init...');
+      this.loadAlbums();
     };
 
     // 上传图片
@@ -56,17 +57,29 @@
         e.last_upload_time = new Date(e.last_upload_time).toLocaleString();
         return e;
       });
-
-      /*setTimeout(function () {
-        lightGallery(document.getElementById('gallery_id'), galOpts);
-      }, 2000);*/
     };
 
     $scope.createAlbum = function (album) {
+      if ($scope.albumName) {
+        album = $scope.albumName;
+      }
       if (!album) {
         swal('相册名称不可为空！');
+      } else {
+        AlbumService.createAlbum({name: album, token: 'test'})
+          .$promise
+          .then(createAlbumCb);
       }
-    }
+    };
+
+    var createAlbumCb = function (data) {
+      if (data) {
+        if (!$scope.albums) {
+          $scope.albums = [];
+        }
+        $scope.albums.push(data);
+      }
+    };
 
     this.$onChanges = function (changeObj) {
       console.log('On change:' + JSON.toString(changeObj));
