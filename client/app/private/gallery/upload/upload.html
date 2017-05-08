@@ -1,15 +1,24 @@
 <div class="gal-up-wrap" nv-file-drop="" uploader="uploader">
-  <h2>图片上传/预览</h2>
-  <p class="lead">支持<span class="label label-info">拖拽</span> 和 <span class="label label-info">选择</span></p>
 
-  <div class="row">
-    <label>
-      相册:
-      <md-select placeholder="Assign to user" ng-model="albumName" md-on-open="loadAlbums()" style="min-width: 200px;">
+  <div style="text-align: center">
+    <h2>图片上传/预览</h2>
+    <p class="lead">支持<span class="label label-info">拖拽</span> 和 <span class="label label-info">选择</span></p>
+  </div>
+
+  <div class="md-inline" layout="row" layout-align="center center">
+    <div flex="70">
+      <md-select placeholder="Select An Alubm To Upload" ng-model="selectedAlbum" md-on-open="loadAlbums()" ng-show="curCreateMode == 'ADD'">
         <md-option ng-value="album" ng-repeat="album in albums">{{album.name}}</md-option>
       </md-select>
-    </label>
-    <md-button class="md-raised" ng-click="createAlbum()"><span class="fa fa-plus">Add New</span></md-button>
+      <md-input-container ng-show="curCreateMode == 'SAVE'">
+        <label>Album Name</label>
+        <input ng-model="nwAlbumName" ng-init="nwAlbumName = ''">
+      </md-input-container>
+    </div>
+    <div flex="20">
+      <md-button class="md-raised" ng-click="createAlbum()" ng-show="curCreateMode == 'ADD'" flex="20" style="max-height: 30px"><span class="fa fa-plus">Add New</span></md-button>
+      <md-button class="md-raised" ng-click="createAlbum()" ng-show="curCreateMode == 'SAVE'" flex="20" style="max-height: 30px"><span class="fa fa-check">Save</span></md-button>
+    </div>
   </div>
 
   <!-- Upload  -->
@@ -49,7 +58,7 @@
 </div>
 <md-progress-linear md-mode="determinate" value="{{uploader.progress}}" ng-show="uploader.getNotUploadedItems().length > 0"></md-progress-linear>
 <md-dialog-actions>
-  <md-button class="md-raised" type="button" style="float: right;margin-right: 5px;" ng-click="uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+  <md-button class="md-raised" type="button" style="float: right;margin-right: 5px;" ng-click="uploadAlbumImgs()" ng-disabled="!uploader.getNotUploadedItems().length">
     <span class="glyphicon glyphicon-upload"></span>上传
   </md-button>
 </md-dialog-actions>

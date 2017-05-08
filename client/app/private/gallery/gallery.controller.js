@@ -3,7 +3,7 @@
  */
 'use strict';
 (function () {
-  function GalleryCtrl($scope, $mdDialog, AlbumService, Util, FileUploader) {
+  function GalleryCtrl($scope, $mdDialog, $timeout, AlbumService, Util, FileUploader) {
     this.$inject = ['$scope', '$mdDialog', Util];
     console.log('GalleryCtrl inject:', arguments);
 
@@ -36,14 +36,18 @@
 
     // 加载相册
     this.loadAlbums = $scope.loadAlbums = function (cb) {
+      $scope.albums = [];
       // TODO
-      AlbumService.getAlbumDirs({page: 1, limit: 10}).$promise.then(function (rs) {
+      return AlbumService.getAlbumDirs({page: 1, limit: 10}).$promise.then(function (rs) {
         console.log('Load album dirs:', rs || {});
-        albumsLoadedCb(rs.docs || []);
 
-        if(cb && angular.isFunction(cb)) {
+        return $timeout(function () {
+          return albumsLoadedCb(rs.docs || []);
+        }, 2000);
+
+/*        if(cb && angular.isFunction(cb)) {
           cb();
-        }
+        }*/
       });
     };
 
@@ -57,11 +61,23 @@
         e.last_upload_time = new Date(e.last_upload_time).toLocaleString();
         return e;
       });
+      return $scope.albums;
     };
 
+    var createModes = ['ADD', 'SAVE'];
+    $scope.curCreateMode = createModes[0];
+
     $scope.createAlbum = function (album) {
-      if ($scope.albumName) {
-        album = $scope.albumName;
+
+      if ($scope.curCreateMode == createModes[0]) {
+        $scope.curCreateMode = createModes[1];
+        return;
+      } else if ($scope.curCreateMode == createModes[1]){ // 'SAVE'
+        $scope.curCreateMode = createModes[0];
+      }
+
+      if ($scope.nwAlbumName) {
+        album = $scope.nwAlbumName;
       }
       if (!album) {
         swal('相册名称不可为空！');
@@ -78,6 +94,8 @@
           $scope.albums = [];
         }
         $scope.albums.push(data);
+        // tip success
+        swal('Add album:' + (data.name || '') + 'success!');
       }
     };
 
@@ -172,6 +190,13 @@
       $scope.uploadAll = function () {
         uploader.uploadAll();
       }
+
+      $scope.uploadAlbumImgs = function () {
+        if (!$scope.selectedAlbum) {
+          swal("Please select an album to upload your images.");
+        }
+        uploader.uploadAll();
+      };
 
     };
     _dialogCtrl.$inject = ['$scope', '$mdDialog', '$cookies', 'FileUploader'];
