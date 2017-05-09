@@ -16,5 +16,6 @@ angular.module('snoopyApp', ['snoopyApp.auth', 'snoopyApp.admin', 'snoopyApp.hom
       // Allow same origin resource loads.
       'self',
       // Allow loading from our assets domain. **.
-      'https://sachinchoolur.github.io/lightgallery.js/static/img/**'
+      'https://sachinchoolur.github.io/lightgallery.js/static/img/**',
+      'http://120.27.233.150/imgs/**'
     ])});
