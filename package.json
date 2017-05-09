@@ -101,6 +101,7 @@
     "karma-spec-reporter": "~0.0.20",
     "mocha": "^2.2.5",
     "open": "~0.0.4",
+    "pm2": "^2.4.6",
     "proxyquire": "^1.0.1",
     "query-string": "^4.3.2",
     "sinon": "^1.16.1",
