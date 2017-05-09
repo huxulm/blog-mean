@@ -30,10 +30,6 @@
         });
     };
 
-    this.cb = function (fileItem, response, status, headers) {
-      // upload callback
-    };
-
     // 加载相册
     this.loadAlbums = $scope.loadAlbums = function (cb) {
       $scope.albums = [];
@@ -105,7 +101,7 @@
   }
 
   function DialogCtrl(ctx) {
-    var _dialogCtrl = function ($scope, $mdDialog, $cookies, FileUploader) {
+    var _dialogCtrl = function ($scope, $mdDialog, $cookies, FileUploader, AlbumService) {
       console.log('DialogCtrl ctx:', ctx);
       DialogCtrl.prototype = ctx;
       this.$scope = $scope;
@@ -113,6 +109,8 @@
       this.$mdDialog = $mdDialog;
       this.$scope.nwAlbum = {};
       this.$scope.field = 'field text';
+
+      ctx.cb = this.createAlbumCb;
 
       var uploader = $scope.uploader = new FileUploader({
         url: '/api/upload',
@@ -154,12 +152,12 @@
       };
       uploader.onSuccessItem = function(fileItem, response, status, headers) {
         console.info('onSuccessItem', fileItem, response, status, headers);
-        if (ctx.cb) {
-          ctx.cb(fileItem, response, status, headers);
+        if (status == 200 && response && response.status === '1') {
+          uploadedImgs = response.data.files || [];
+        } else {
+          swal('图片上传失败.');
         }
-
-        // close dialog in 2000 ms
-        setTimeout($scope.closeUploadDialog, 2000);
+        createAlbumCb(fileItem, response, status, headers);
       };
       uploader.onErrorItem = function(fileItem, response, status, headers) {
         if (status === 401) {
@@ -192,14 +190,34 @@
       }
 
       $scope.uploadAlbumImgs = function () {
+        uploadedImgs = [];
         if (!$scope.selectedAlbum) {
           swal("Please select an album to upload your images.");
         }
         uploader.uploadAll();
       };
 
+      // 成功上传的图片
+      var uploadedImgs = [];
+      var createAlbumCb = function () {
+        var data = [];
+        if (arguments && arguments.length == 4) {
+
+          uploadedImgs.forEach(function (e) {
+            data.push({url: e.url, name: e.filename, albumId: $scope.selectedAlbum._id});
+          });
+          AlbumService.createAlbumItems({items: data}).$promise.then(r => {
+            if (r) {
+              ctx.loadAlbums();
+            }
+          });
+        } else {
+          swal('上传图片到相册[' + $scope.selectedAlbum + ']失败.');
+        }
+      };
+
     };
-    _dialogCtrl.$inject = ['$scope', '$mdDialog', '$cookies', 'FileUploader'];
+    _dialogCtrl.$inject = ['$scope', '$mdDialog', '$cookies', 'FileUploader', 'AlbumService'];
     return _dialogCtrl;
   }
 

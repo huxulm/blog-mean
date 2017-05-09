@@ -33,6 +33,13 @@
         createAlbum: {
           method: 'POST',
           isArray: false
+        },
+        createAlbumItems: {
+          method: 'POST',
+          isArray: false,
+          params: {
+            id: 'items'
+          }
         }
       }
     );

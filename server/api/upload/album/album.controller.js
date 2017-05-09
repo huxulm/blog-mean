@@ -7,7 +7,6 @@ import _ from 'lodash';
 import AlbumDir from './albumDir.model';
 import AlbumItem from './albumItem.model';
 import CONSTS from '../../../config/app_constants';
-import queryString from 'query-string';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -109,10 +108,21 @@ export function createAlbumDir(req, res) {
 }
 
 export function createAlbumItem(req, res) {
-  if (!req.body) {
+  console.log('items: ------------>', JSON.stringify(req.body || {}));
+  let albumItems = [];
+  if (req.body.items && _.isArray(req.body.items)) {
+    req.body.items.forEach(item => {
+      albumItems.push({
+        a_id: item.albumId,
+        name: item.filename,
+        url: item.url
+      });
+    });
+  }
+  if (albumItems.length == 0) {
     return res.status(200).json(errorParams(-1));
   }
-  return AlbumItem.create(req.body)
+  return AlbumItem.create(albumItems)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
