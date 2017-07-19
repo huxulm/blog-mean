@@ -98,7 +98,8 @@
         var uploader = $scope.uploader = new FileUploader({
           url: '/api/upload',
           headers: {
-            'X-XSRF-TOKEN': $scope.$cookies.get('XSRF-TOKEN') || ''
+            'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN') || '',
+            'Authorization': 'Bearer ' + ($cookies.get('token') || '')
           }
         });
 
