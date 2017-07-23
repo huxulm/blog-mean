@@ -24,6 +24,8 @@
       this.$scope.default = {};
       this.$scope.default.readonly = false;
       this.$scope.default.tags = [];
+      this.$scope.vegObjs = [{tag:'DEMO'}];
+      this.$scope.newTag = this.newTag;
       this.$scope.default.removable = true;
 
       this.$scope.avaliableTags =[];
@@ -211,6 +213,12 @@
         config.title = msg.replace(/\[/, "");
       }
       this.SweetAlert.swal(config, cb || (()=>{}));
+    }
+
+    newTag(chip) {
+      return {
+        tag: chip
+      };
     }
 
   }
