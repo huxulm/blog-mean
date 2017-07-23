@@ -8,6 +8,8 @@ class NavbarController {
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
+    // Navbar初始化关闭状态
+    this.isCollapsed = true;
     this.menu = [
       {
         state: 'main.home',
