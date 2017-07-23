@@ -146,7 +146,7 @@
       var $this = this;
       this.$scope.default.tags.forEach(function (e) {
         $this.$scope.avaliableTags.forEach(function (tag) {
-          if (tag.tag === e) {
+          if (tag.tag === e.tag) {
             tag_ids.push({tag_id: tag._id || null});
           }
         });
