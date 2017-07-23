@@ -156,7 +156,7 @@ function addNewButtons(scope) {
             toggle: false,
             title: "UploadImage",
             icon: {
-              fa: "fa fa-file-image-o",
+              fa: "fa fa-upload",
               glyph: "glyphicon glyphicon-upload"
             },
             callback: function (e) {
