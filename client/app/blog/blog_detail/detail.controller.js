@@ -13,6 +13,10 @@
       this.SweetAlert = SweetAlert;
       this.BlogService = Blog;
       this.marked = marked;
+      this.$scope.blogTitle = '';
+      this.$scope.$watch('blogTitle', function (nwVal, oldVal) {
+        $('title').text(nwVal || '');
+      });
     }
 
     $onInit() {
@@ -40,6 +44,7 @@
         result.create_time = new Date(result.create_time).toLocaleString();
         result.modify_time = new Date(result.modify_time).toLocaleString();
         $this.$scope.blogDetail = result;
+        $this.$scope.blogTitle = result.title || '';
         $this.$scope.html_content = $this.marked($this.$scope.blogDetail.md_content);
       }
     };
