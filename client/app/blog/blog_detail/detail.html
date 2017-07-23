@@ -12,7 +12,7 @@
     <li class="list-group-item" ng-show="blogDetail.tags.length > 0">
       <ul class="glyphicon glyphicon-tags list-group">
         <!--<span ng-if="blogDetail.tags.length == 0" class="glyphicon glyphicon-tags"></span>-->
-        <li ng-repeat="tag in blogDetail.tags" class="list-group-item"><a href="#"><span>{{tag}}</span></a></li>
+        <li ng-repeat="tag in blogDetail.tags" class="list-group-item" style="display: inline-block"><a href="#"><span>{{tag.tag}}</span></a></li>
       </ul>
   </ul>
 

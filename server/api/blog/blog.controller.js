@@ -198,9 +198,25 @@ export function tags(req, res) {
 // Gets a single Blog from the DB
 export function show(req, res) {
   return Blog.findById(req.params.id).exec()
+    .then(fillTags(res))
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
+}
+
+function fillTags(res) {
+  return function (entity) {
+    console.log('获取blog' + JSON.stringify(entity));
+    let tagIds = _.map(entity.tags, 'tag_id');
+    console.log('IDS: ======>' + JSON.stringify(tagIds));
+    return Tag.find({_id: {$in: tagIds}}).exec()
+      .then(function (tags) {
+        console.log('All tags:=====>' + JSON.stringify(tags));
+        _.merge(entity.tags, tags);
+        console.log('Merged获取blog' + JSON.stringify(entity));
+      return entity;
+    });
+  }
 }
 
 // Creates a new Blog in the DB
