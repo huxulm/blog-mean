@@ -9,10 +9,7 @@
           <li class="date">{{item.create_time}}</li>
           <li class="tags">
             <ul>
-              <li><a href="#">Learn</a></li>
-              <li><a href="#">Code</a></li>
-              <li><a href="#">HTML</a></li>
-              <li><a href="#">CSS</a></li>
+              <li ng-repeat="tag in item.tags"><a href="#">{{tag.tag}}</a></li>
             </ul>
           </li>
           <li class="other">other + {{$index}}</li>
