@@ -142,6 +142,9 @@ function buildPageQuery(req) {
 export function page(req, res) {
   console.log('request params:' + JSON.stringify(req.query));
   var queryCondition = buildPageQuery(req);
+  // 默认倒序
+  queryCondition = _.merge(queryCondition, {sort: {"_id": -1}});
+  console.log('Sort:' + JSON.stringify(queryCondition));
   return Blog.paginate({}, queryCondition)
     .then(fillAuthor())
     .then(function (entity) {
