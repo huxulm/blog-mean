@@ -14,6 +14,7 @@
   .blog-content img {
     max-width: 100%;
     padding: .2rem;
+    margin-left: 0;
   }
   .blog-detail {
     padding: 2%;
