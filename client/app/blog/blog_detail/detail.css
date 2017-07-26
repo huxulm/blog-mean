@@ -34,6 +34,7 @@
 .blog-content {
   font-size: 120%;
   /*border: 1px solid rgba(221, 223, 255, 0.6);*/
+  font-weight: 300;
 }
 
 .blog-content img {
